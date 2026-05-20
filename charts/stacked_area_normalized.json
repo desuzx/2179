@@ -1,0 +1,116 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 820,
+  "height": 300,
+  "background": "#161428",
+  "data": { "url": "data/genre_yearly.csv" },
+  "transform": [
+    {
+      "filter": {
+        "field": "Genre",
+        "oneOf": [
+          "Multiplayer Online Battle Arena",
+          "Battle Royale",
+          "First-Person Shooter",
+          "Strategy",
+          "Sports"
+        ]
+      }
+    },
+    { "filter": "datum.Year <= 2023" },
+    {
+      "joinaggregate": [
+        { "op": "sum", "field": "TotalEarnings", "as": "YearTotal" }
+      ],
+      "groupby": ["Year"]
+    },
+    {
+      "calculate": "round(datum.TotalEarnings / datum.YearTotal * 1000) / 10",
+      "as": "SharePct"
+    }
+  ],
+  "mark": { "type": "area", "line": false, "opacity": 0.88 },
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "quantitative",
+      "scale": { "domain": [1998, 2023] },
+      "axis": {
+        "labelColor": "#9991bb",
+        "labelFontSize": 11,
+        "labelFont": "Outfit",
+        "format": "d",
+        "ticks": false,
+        "domainColor": "#2a2444",
+        "gridColor": "#1e1a30",
+        "gridDash": [3, 3],
+        "title": null
+      }
+    },
+    "y": {
+      "field": "TotalEarnings",
+      "type": "quantitative",
+      "stack": "normalize",
+      "axis": {
+        "labelColor": "#9991bb",
+        "labelFontSize": 11,
+        "labelFont": "Outfit",
+        "format": "%",
+        "ticks": false,
+        "domainColor": "#2a2444",
+        "gridColor": "#1e1a30",
+        "gridDash": [3, 3],
+        "title": "Share of Annual Prize Money",
+        "titleColor": "#4a4460",
+        "titleFontSize": 11,
+        "titleFont": "Outfit",
+        "titlePadding": 10
+      }
+    },
+    "color": {
+      "field": "Genre",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Multiplayer Online Battle Arena",
+          "First-Person Shooter",
+          "Battle Royale",
+          "Strategy",
+          "Sports"
+        ],
+        "range": ["#ee3e75", "#00d1ff", "#9e86ff", "#ffb800", "#00ff94"]
+      },
+      "legend": {
+        "title": "Genre",
+        "titleColor": "#4a4460",
+        "titleFontSize": 10,
+        "titleFont": "Outfit",
+        "labelColor": "#9991bb",
+        "labelFontSize": 10,
+        "labelFont": "Outfit",
+        "labelLimit": 220,
+        "orient": "right",
+        "symbolSize": 60,
+        "rowPadding": 2
+      }
+    },
+    "order": {
+      "field": "Genre",
+      "type": "nominal",
+      "sort": [
+        "Multiplayer Online Battle Arena",
+        "Battle Royale",
+        "First-Person Shooter",
+        "Strategy",
+        "Sports"
+      ]
+    },
+    "tooltip": [
+      { "field": "Year", "title": "Year", "format": "d" },
+      { "field": "Genre", "title": "Genre" },
+      { "field": "TotalEarnings", "title": "Prize Money", "format": "$,.0f" },
+      { "field": "SharePct", "title": "Share of Year %", "format": ".1f" }
+    ]
+  },
+  "config": { "view": { "stroke": "transparent" } }
+}

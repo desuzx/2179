@@ -1,0 +1,338 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 820,
+  "height": 440,
+  "background": "#161428",
+  "data": {
+    "values": [
+      {
+        "Rank": 1,
+        "Handle": "N0tail",
+        "RealName": "Johan Sundstein",
+        "Country": "Denmark",
+        "TotalEarnings": 7184163.05,
+        "TopGame": "Dota 2",
+        "IsAustralian": false
+      },
+      {
+        "Rank": 2,
+        "Handle": "JerAx",
+        "RealName": "Jesse Vainikka",
+        "Country": "Finland",
+        "TotalEarnings": 6486623.98,
+        "TopGame": "Dota 2",
+        "IsAustralian": false
+      },
+      {
+        "Rank": 3,
+        "Handle": "Miposhka",
+        "RealName": "Yaroslav Naidenov",
+        "Country": "Russian Federation",
+        "TotalEarnings": 6250134.89,
+        "TopGame": "Dota 2",
+        "IsAustralian": false
+      },
+      {
+        "Rank": 4,
+        "Handle": "ana",
+        "RealName": "Anathan Pham",
+        "Country": "Australia",
+        "TotalEarnings": 6024411.96,
+        "TopGame": "Dota 2",
+        "IsAustralian": true
+      },
+      {
+        "Rank": 5,
+        "Handle": "Yatoro",
+        "RealName": "Ilya Mulyarchuk",
+        "Country": "Ukraine",
+        "TotalEarnings": 5990099.45,
+        "TopGame": "Dota 2",
+        "IsAustralian": false
+      },
+      {
+        "Rank": 6,
+        "Handle": "Collapse",
+        "RealName": "Magomed Khalilov",
+        "Country": "Russian Federation",
+        "TotalEarnings": 5985474.47,
+        "TopGame": "Dota 2",
+        "IsAustralian": false
+      },
+      {
+        "Rank": 7,
+        "Handle": "Ceb",
+        "RealName": "S\u00e9bastien Debs",
+        "Country": "France",
+        "TotalEarnings": 5949442.73,
+        "TopGame": "Dota 2",
+        "IsAustralian": false
+      },
+      {
+        "Rank": 8,
+        "Handle": "Topson",
+        "RealName": "Topias Taavitsainen",
+        "Country": "Finland",
+        "TotalEarnings": 5898810.6,
+        "TopGame": "Dota 2",
+        "IsAustralian": false
+      },
+      {
+        "Rank": 9,
+        "Handle": "Mira",
+        "RealName": "Miroslaw Kolpakov",
+        "Country": "Ukraine",
+        "TotalEarnings": 5661262.45,
+        "TopGame": "Dota 2",
+        "IsAustralian": false
+      },
+      {
+        "Rank": 10,
+        "Handle": "KuroKy",
+        "RealName": "Kuro Takhasomi",
+        "Country": "Germany",
+        "TotalEarnings": 5295698.85,
+        "TopGame": "Dota 2",
+        "IsAustralian": false
+      },
+      {
+        "Rank": 11,
+        "Handle": "Miracle-",
+        "RealName": "Amer Al-Barkawi",
+        "Country": "Jordan",
+        "TotalEarnings": 4913585.26,
+        "TopGame": "Dota 2",
+        "IsAustralian": false
+      },
+      {
+        "Rank": 12,
+        "Handle": "Matumbaman",
+        "RealName": "Lasse Urpalainen",
+        "Country": "Finland",
+        "TotalEarnings": 4873086.24,
+        "TopGame": "Dota 2",
+        "IsAustralian": false
+      },
+      {
+        "Rank": 13,
+        "Handle": "MinD_ContRoL",
+        "RealName": "Ivan Ivanov",
+        "Country": "Bulgaria",
+        "TotalEarnings": 4704032.25,
+        "TopGame": "Dota 2",
+        "IsAustralian": false
+      },
+      {
+        "Rank": 14,
+        "Handle": "TORONTOTOKYO",
+        "RealName": "Alexander Khertek",
+        "Country": "Russian Federation",
+        "TotalEarnings": 4562226.9,
+        "TopGame": "Dota 2",
+        "IsAustralian": false
+      },
+      {
+        "Rank": 15,
+        "Handle": "GH",
+        "RealName": "Maroun Merhej",
+        "Country": "Lebanon",
+        "TotalEarnings": 4391703.4,
+        "TopGame": "Dota 2",
+        "IsAustralian": false
+      },
+      {
+        "Rank": 16,
+        "Handle": "Ame",
+        "RealName": "Wang, Chunyu",
+        "Country": "China",
+        "TotalEarnings": 4386914.47,
+        "TopGame": "Dota 2",
+        "IsAustralian": false
+      },
+      {
+        "Rank": 17,
+        "Handle": "Puppey",
+        "RealName": "Clement Ivanov",
+        "Country": "Estonia",
+        "TotalEarnings": 4345228.38,
+        "TopGame": "Dota 2",
+        "IsAustralian": false
+      },
+      {
+        "Rank": 18,
+        "Handle": "Zai",
+        "RealName": "Ludwig W\u00e5hlberg",
+        "Country": "Sweden",
+        "TotalEarnings": 4292756.02,
+        "TopGame": "Dota 2",
+        "IsAustralian": false
+      },
+      {
+        "Rank": 19,
+        "Handle": "SumaiL",
+        "RealName": "Sumail Hassan",
+        "Country": "Pakistan",
+        "TotalEarnings": 4171871.78,
+        "TopGame": "Dota 2",
+        "IsAustralian": false
+      },
+      {
+        "Rank": 20,
+        "Handle": "y`",
+        "RealName": "Zhang, Yiping",
+        "Country": "China",
+        "TotalEarnings": 4090790.2,
+        "TopGame": "Dota 2",
+        "IsAustralian": false
+      }
+    ]
+  },
+  "encoding": {
+    "y": {
+      "field": "Handle",
+      "type": "nominal",
+      "sort": {
+        "field": "TotalEarnings",
+        "order": "descending"
+      },
+      "axis": {
+        "labelColor": "#c8c4e0",
+        "labelFontSize": 12,
+        "labelFont": "Outfit",
+        "labelFontWeight": "normal",
+        "ticks": false,
+        "domainColor": "#2a2444",
+        "title": null,
+        "labelPadding": 8
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {
+          "field": "TotalEarnings",
+          "type": "quantitative",
+          "scale": {
+            "domainMin": 0
+          },
+          "axis": {
+            "labelColor": "#9991bb",
+            "labelFontSize": 11,
+            "labelFont": "Outfit",
+            "format": "$~s",
+            "ticks": false,
+            "domainColor": "#2a2444",
+            "gridColor": "#1e1a30",
+            "gridDash": [3, 3],
+            "title": null,
+            "tickCount": 6
+          }
+        },
+        "x2": {
+          "datum": 0
+        },
+        "color": {
+          "field": "IsAustralian",
+          "type": "nominal",
+          "scale": {
+            "domain": [false, true],
+            "range": ["#7065a1", "#ee3e75"]
+          },
+          "legend": null
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 100
+      },
+      "encoding": {
+        "x": {
+          "field": "TotalEarnings",
+          "type": "quantitative"
+        },
+        "color": {
+          "field": "IsAustralian",
+          "type": "nominal",
+          "scale": {
+            "domain": [false, true],
+            "range": ["#7f77dd", "#ee3e75"]
+          },
+          "legend": null
+        },
+        "size": {
+          "field": "IsAustralian",
+          "type": "nominal",
+          "scale": {
+            "domain": [false, true],
+            "range": [80, 160]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "Rank",
+            "title": "World Rank"
+          },
+          {
+            "field": "Handle",
+            "title": "Player"
+          },
+          {
+            "field": "RealName",
+            "title": "Real Name"
+          },
+          {
+            "field": "Country",
+            "title": "Country"
+          },
+          {
+            "field": "TotalEarnings",
+            "title": "Total Earnings",
+            "format": "$,.0f"
+          },
+          {
+            "field": "TopGame",
+            "title": "Top Game"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "fontSize": 10,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "y": {
+          "field": "Handle",
+          "type": "nominal",
+          "sort": { "field": "TotalEarnings", "order": "descending" }
+        },
+        "x": { "field": "TotalEarnings", "type": "quantitative" },
+        "text": { "field": "Country" },
+        "color": {
+          "field": "IsAustralian",
+          "type": "nominal",
+          "scale": { "domain": [false, true], "range": ["#897fb6", "#ee3e75"] },
+          "legend": null
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 820,
+  "height": 480,
+  "background": "#161428",
+  "data": { "url": "data/top100_players.csv" },
+  "transform": [
+    { "calculate": "toNumber(datum.TotalEarnings)", "as": "Earnings" },
+    { "calculate": "toNumber(datum.Rank)", "as": "RankNum" },
+    {
+      "calculate": "datum.TopGame == 'Counter-Strike: Global Offensive' || datum.TopGame == 'Counter-Strike 2' ? 'Counter-Strike' : datum.TopGame == 'Call of Duty: Black Ops Cold War' ? 'Call of Duty' : datum.TopGame == 'League of Legends' || datum.TopGame == 'StarCraft II' || datum.TopGame == 'chess24' ? 'Other' : datum.TopGame",
+      "as": "GameGroup"
+    },
+    { "calculate": "datum.Country == 'Australia'", "as": "IsAustralia" },
+    { "calculate": "random()", "as": "Jitter" }
+  ],
+  "encoding": {
+    "x": {
+      "field": "GameGroup",
+      "type": "nominal",
+      "sort": [
+        "Dota 2",
+        "Counter-Strike",
+        "Fortnite",
+        "Arena of Valor",
+        "Call of Duty",
+        "Other"
+      ],
+      "axis": {
+        "title": null,
+        "labelColor": "#c8c4e0",
+        "labelFont": "Outfit",
+        "labelFontSize": 12,
+        "labelFontWeight": 500,
+        "ticks": false,
+        "domainColor": "#2a2444",
+        "labelAngle": 0,
+        "labelPadding": 12
+      }
+    },
+    "y": {
+      "field": "Earnings",
+      "type": "quantitative",
+      "axis": {
+        "title": "Total Career Earnings (USD)",
+        "titleColor": "#4a4460",
+        "titleFont": "Outfit",
+        "titleFontSize": 11,
+        "titlePadding": 12,
+        "labelColor": "#9991bb",
+        "labelFont": "Outfit",
+        "labelFontSize": 11,
+        "format": "$~s",
+        "ticks": false,
+        "domainColor": "#2a2444",
+        "gridColor": "#1e1a30",
+        "gridDash": [3, 3]
+      }
+    }
+  },
+  "layer": [
+    {
+      "params": [
+        {
+          "name": "hover",
+          "select": { "type": "point", "on": "mouseover", "clear": "mouseout" }
+        },
+        {
+          "name": "gameSelect",
+          "select": {
+            "type": "point",
+            "fields": ["GameGroup"],
+            "bind": "legend"
+          }
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "stroke": "#161428",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "xOffset": {
+          "field": "Jitter",
+          "type": "quantitative",
+          "scale": { "domain": [0, 1], "range": [-10, 50] }
+        },
+        "size": {
+          "condition": { "param": "hover", "empty": false, "value": 300 },
+          "value": 120
+        },
+        "color": {
+          "field": "GameGroup",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Dota 2",
+              "Counter-Strike",
+              "Fortnite",
+              "Arena of Valor",
+              "Call of Duty",
+              "Other"
+            ],
+            "range": [
+              "#ee3e75",
+              "#00d1ff",
+              "#9e86ff",
+              "#ffb800",
+              "#44d67a",
+              "#7065a1"
+            ]
+          },
+          "legend": {
+            "title": "Game",
+            "titleColor": "#4a4460",
+            "titleFontSize": 10,
+            "titleFont": "Outfit",
+            "labelColor": "#9991bb",
+            "labelFontSize": 11,
+            "labelFont": "Outfit",
+            "orient": "right",
+            "symbolSize": 80,
+            "symbolStrokeWidth": 0
+          }
+        },
+        "opacity": {
+          "condition": [
+            { "param": "hover", "empty": false, "value": 1 },
+            { "test": "length(data('hover_store')) > 0", "value": 0.05 },
+            { "param": "gameSelect", "empty": false, "value": 0.85 },
+            { "test": "length(data('gameSelect_store')) > 0", "value": 0.05 }
+          ],
+          "value": 0.85
+        },
+        "tooltip": [
+          { "field": "RankNum", "title": "World Rank" },
+          { "field": "Handle", "title": "Player" },
+          { "field": "RealName", "title": "Real Name" },
+          { "field": "Country", "title": "Country" },
+          {
+            "field": "Earnings",
+            "title": "Total Earnings",
+            "format": "$,.0f"
+          },
+          { "field": "GameGroup", "title": "Game" }
+        ]
+      }
+    },
+    {
+      "transform": [{ "filter": "datum.IsAustralia" }],
+      "mark": {
+        "type": "circle",
+        "size": 280,
+        "filled": false,
+        "stroke": "#ffffff",
+        "strokeWidth": 2.5,
+        "opacity": 0.9
+      },
+      "encoding": {
+        "xOffset": {
+          "field": "Jitter",
+          "type": "quantitative",
+          "scale": { "domain": [0, 1], "range": [-10, 50] }
+        }
+      }
+    },
+    {
+      "transform": [{ "filter": "datum.IsAustralia" }],
+      "mark": {
+        "type": "text",
+        "font": "Outfit",
+        "fontSize": 11,
+        "fontWeight": 600,
+        "dy": -18
+      },
+      "encoding": {
+        "xOffset": {
+          "field": "Jitter",
+          "type": "quantitative",
+          "scale": { "domain": [0, 1], "range": [-10, 50] }
+        },
+        "text": { "field": "Handle" },
+        "color": { "value": "#ee3e75" }
+      }
+    }
+  ],
+  "config": { "view": { "stroke": "transparent" } }
+}

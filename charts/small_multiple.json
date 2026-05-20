@@ -1,0 +1,178 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": "#161428",
+  "data": { "url": "data/genre_yearly.csv" },
+  "facet": {
+    "field": "Genre",
+    "type": "nominal",
+    "columns": 3,
+    "sort": [
+      "Multiplayer Online Battle Arena",
+      "First-Person Shooter",
+      "Battle Royale",
+      "Strategy",
+      "Sports"
+    ],
+    "header": {
+      "labelColor": "#e0dcff",
+      "labelFontSize": 13,
+      "labelFont": "Outfit",
+      "labelFontWeight": 600,
+      "title": null,
+      "labelPadding": 10
+    }
+  },
+  "spec": {
+    "width": 158,
+    "height": 130,
+    "layer": [
+      {
+        "mark": {
+          "type": "area",
+          "interpolate": "monotone",
+          "opacity": 0.2
+        },
+        "encoding": {
+          "x": {
+            "field": "Year",
+            "type": "quantitative",
+            "axis": {
+              "labelColor": "#9991bb",
+              "labelFontSize": 9,
+              "labelFont": "Outfit",
+              "format": "d",
+              "ticks": false,
+              "domainColor": "#2a2444",
+              "grid": false,
+              "title": null,
+              "labelAngle": 0,
+              "tickCount": 3
+            },
+            "scale": { "domainMax": 2024, "domainMin": 1998 }
+          },
+          "y": {
+            "field": "TotalEarnings",
+            "type": "quantitative",
+            "axis": {
+              "labelColor": "#9991bb",
+              "labelFontSize": 9,
+              "labelFont": "Outfit",
+              "format": "$~s",
+              "ticks": false,
+              "domainColor": "#2a2444",
+              "gridColor": "#1e1a30",
+              "gridDash": [3, 3],
+              "title": null,
+              "tickCount": 3
+            }
+          },
+          "color": {
+            "field": "Genre",
+            "type": "nominal",
+            "scale": {
+              "domain": [
+                "Multiplayer Online Battle Arena",
+                "First-Person Shooter",
+                "Battle Royale",
+                "Strategy",
+                "Sports"
+              ],
+              "range": ["#ee3e75", "#00d1ff", "#9e86ff", "#f5a623", "#44d67a"]
+            },
+            "legend": null
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "line",
+          "interpolate": "monotone",
+          "strokeWidth": 2
+        },
+        "encoding": {
+          "x": { "field": "Year", "type": "quantitative" },
+          "y": { "field": "TotalEarnings", "type": "quantitative" },
+          "color": {
+            "field": "Genre",
+            "type": "nominal",
+            "scale": {
+              "domain": [
+                "Multiplayer Online Battle Arena",
+                "First-Person Shooter",
+                "Battle Royale",
+                "Strategy",
+                "Sports"
+              ],
+              "range": ["#ee3e75", "#00d1ff", "#29b6d4", "#f5a623", "#44d67a"]
+            },
+            "legend": null
+          }
+        }
+      },
+      {
+        "params": [
+          {
+            "name": "hoverGenre",
+            "select": {
+              "type": "point",
+              "fields": ["Year"],
+              "nearest": true,
+              "on": "mousemove",
+              "clear": "mouseout"
+            }
+          }
+        ],
+        "mark": { "type": "point", "opacity": 0 },
+        "encoding": {
+          "x": { "field": "Year", "type": "quantitative" },
+          "y": { "field": "TotalEarnings", "type": "quantitative" }
+        }
+      },
+      {
+        "mark": { "type": "point", "filled": true, "size": 60 },
+        "encoding": {
+          "x": { "field": "Year", "type": "quantitative" },
+          "y": { "field": "TotalEarnings", "type": "quantitative" },
+          "color": {
+            "field": "Genre",
+            "type": "nominal",
+            "scale": {
+              "domain": [
+                "Multiplayer Online Battle Arena",
+                "First-Person Shooter",
+                "Battle Royale",
+                "Strategy",
+                "Sports"
+              ],
+              "range": ["#ee3e75", "#7f77dd", "#29b6d4", "#f5a623", "#44d67a"]
+            },
+            "legend": null
+          },
+          "opacity": {
+            "condition": { "param": "hoverGenre", "empty": false, "value": 1 },
+            "value": 0
+          },
+          "tooltip": [
+            { "field": "Year", "title": "Year", "format": "d" },
+            { "field": "Genre", "title": "Genre" },
+            {
+              "field": "TotalEarnings",
+              "title": "Prize Money",
+              "format": "$,.0f"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "resolve": { "scale": { "y": "independent" } },
+  "spacing": 20,
+  "config": {
+    "view": {
+      "stroke": "#1e1a30",
+      "strokeWidth": 1,
+      "fill": "#131325"
+    },
+    "background": "#161428"
+  }
+}

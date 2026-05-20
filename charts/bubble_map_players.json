@@ -1,0 +1,393 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 820,
+  "height": 430,
+  "background": "#161428",
+  "params": [
+    {
+      "name": "zoom_level",
+      "value": 150,
+      "bind": {
+        "input": "range",
+        "min": 150,
+        "max": 800,
+        "step": 10,
+        "name": "Zoom: "
+      }
+    },
+    {
+      "name": "center_to",
+      "value": [0, 20],
+      "bind": {
+        "input": "select",
+        "options": [
+          [0, 20],
+          [15, 50],
+          [100, 35],
+          [-95, 40],
+          [135, -25]
+        ],
+        "labels": ["World", "Europe", "Asia", "North America", "Australia"],
+        "name": "Focus: "
+      }
+    }
+  ],
+  "projection": {
+    "type": "equalEarth",
+    "scale": {
+      "expr": "zoom_level"
+    },
+    "center": {
+      "expr": "center_to"
+    }
+  },
+  "layer": [
+    {
+      "data": {
+        "sphere": true
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#0c0a1c",
+        "stroke": null
+      }
+    },
+    {
+      "data": {
+        "url": "https://cdn.jsdelivr.net/npm/vega-datasets@2/data/world-110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#13113a",
+        "stroke": "#3d3870",
+        "strokeWidth": 0.8
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "Country": "China",
+            "Count": 24,
+            "Lat": 35.86,
+            "Lon": 104.19,
+            "Region": "Asia",
+            "TopGame": "Dota 2 / Arena of Valor"
+          },
+          {
+            "Country": "United States",
+            "Count": 11,
+            "Lat": 37.09,
+            "Lon": -95.71,
+            "Region": "North America",
+            "TopGame": "Fortnite / CoD"
+          },
+          {
+            "Country": "Denmark",
+            "Count": 9,
+            "Lat": 56.26,
+            "Lon": 9.5,
+            "Region": "Europe",
+            "TopGame": "CS:GO / Dota 2"
+          },
+          {
+            "Country": "Russian Federation",
+            "Count": 8,
+            "Lat": 61.52,
+            "Lon": 105.32,
+            "Region": "Europe",
+            "TopGame": "Dota 2"
+          },
+          {
+            "Country": "Sweden",
+            "Count": 5,
+            "Lat": 60.13,
+            "Lon": 18.64,
+            "Region": "Europe",
+            "TopGame": "Dota 2"
+          },
+          {
+            "Country": "Ukraine",
+            "Count": 5,
+            "Lat": 49.0,
+            "Lon": 31.38,
+            "Region": "Europe",
+            "TopGame": "Dota 2"
+          },
+          {
+            "Country": "Finland",
+            "Count": 4,
+            "Lat": 61.92,
+            "Lon": 25.75,
+            "Region": "Europe",
+            "TopGame": "Dota 2"
+          },
+          {
+            "Country": "France",
+            "Count": 3,
+            "Lat": 46.23,
+            "Lon": 2.21,
+            "Region": "Europe",
+            "TopGame": "Counter-Strike"
+          },
+          {
+            "Country": "Canada",
+            "Count": 3,
+            "Lat": 56.13,
+            "Lon": -106.35,
+            "Region": "North America",
+            "TopGame": "Dota 2"
+          },
+          {
+            "Country": "Malaysia",
+            "Count": 3,
+            "Lat": 4.21,
+            "Lon": 101.97,
+            "Region": "Asia",
+            "TopGame": "Dota 2"
+          },
+          {
+            "Country": "Poland",
+            "Count": 2,
+            "Lat": 51.92,
+            "Lon": 19.15,
+            "Region": "Europe",
+            "TopGame": "Dota 2"
+          },
+          {
+            "Country": "Australia",
+            "Count": 2,
+            "Lat": -25.27,
+            "Lon": 133.78,
+            "Region": "Oceania",
+            "TopGame": "Dota 2"
+          },
+          {
+            "Country": "Germany",
+            "Count": 2,
+            "Lat": 51.17,
+            "Lon": 10.45,
+            "Region": "Europe",
+            "TopGame": "Dota 2"
+          },
+          {
+            "Country": "Jordan",
+            "Count": 2,
+            "Lat": 30.59,
+            "Lon": 36.24,
+            "Region": "Middle East",
+            "TopGame": "Dota 2"
+          },
+          {
+            "Country": "Israel",
+            "Count": 2,
+            "Lat": 31.77,
+            "Lon": 35.22,
+            "Region": "Middle East",
+            "TopGame": "Dota 2"
+          },
+          {
+            "Country": "Norway",
+            "Count": 2,
+            "Lat": 60.47,
+            "Lon": 8.47,
+            "Region": "Europe",
+            "TopGame": "CS:GO"
+          },
+          {
+            "Country": "Estonia",
+            "Count": 2,
+            "Lat": 58.6,
+            "Lon": 25.01,
+            "Region": "Europe",
+            "TopGame": "Dota 2"
+          },
+          {
+            "Country": "Bulgaria",
+            "Count": 1,
+            "Lat": 42.73,
+            "Lon": 25.49,
+            "Region": "Europe",
+            "TopGame": "Dota 2"
+          },
+          {
+            "Country": "Lebanon",
+            "Count": 1,
+            "Lat": 33.85,
+            "Lon": 35.86,
+            "Region": "Middle East",
+            "TopGame": "Dota 2"
+          },
+          {
+            "Country": "Pakistan",
+            "Count": 1,
+            "Lat": 30.38,
+            "Lon": 69.35,
+            "Region": "Asia",
+            "TopGame": "Dota 2"
+          },
+          {
+            "Country": "North Macedonia",
+            "Count": 1,
+            "Lat": 41.61,
+            "Lon": 21.75,
+            "Region": "Europe",
+            "TopGame": "Dota 2"
+          },
+          {
+            "Country": "Slovakia",
+            "Count": 1,
+            "Lat": 48.67,
+            "Lon": 19.7,
+            "Region": "Europe",
+            "TopGame": "Dota 2"
+          },
+          {
+            "Country": "Austria",
+            "Count": 1,
+            "Lat": 47.52,
+            "Lon": 14.55,
+            "Region": "Europe",
+            "TopGame": "Fortnite"
+          },
+          {
+            "Country": "Romania",
+            "Count": 1,
+            "Lat": 45.94,
+            "Lon": 24.97,
+            "Region": "Europe",
+            "TopGame": "Dota 2"
+          },
+          {
+            "Country": "Bosnia and Herzegovina",
+            "Count": 1,
+            "Lat": 44.15,
+            "Lon": 17.68,
+            "Region": "Europe",
+            "TopGame": "CS:GO"
+          },
+          {
+            "Country": "Singapore",
+            "Count": 1,
+            "Lat": 1.35,
+            "Lon": 103.82,
+            "Region": "Asia",
+            "TopGame": "Dota 2"
+          },
+          {
+            "Country": "Korea",
+            "Count": 1,
+            "Lat": 35.91,
+            "Lon": 127.77,
+            "Region": "Asia",
+            "TopGame": "League of Legends"
+          }
+        ]
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "circle",
+            "opacity": 0.82,
+            "stroke": "#161428",
+            "strokeWidth": 1
+          },
+          "encoding": {
+            "longitude": {
+              "field": "Lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "Lat",
+              "type": "quantitative"
+            },
+            "size": {
+              "field": "Count",
+              "type": "quantitative",
+              "scale": {
+                "type": "sqrt",
+                "domain": [1, 24],
+                "range": [60, 2200]
+              },
+              "legend": null
+            },
+            "color": {
+              "field": "Region",
+              "type": "nominal",
+              "scale": {
+                "domain": [
+                  "Europe",
+                  "Asia",
+                  "North America",
+                  "Middle East",
+                  "Oceania"
+                ],
+                "range": ["#7f77dd", "#44d67a", "#ffb800", "#00d1ff", "#ee3e75"]
+              },
+              "legend": null
+            },
+            "tooltip": [
+              {
+                "field": "Country",
+                "title": "Country"
+              },
+              {
+                "field": "Region",
+                "title": "Region"
+              },
+              {
+                "field": "Count",
+                "title": "Top-100 Players"
+              },
+              {
+                "field": "TopGame",
+                "title": "Top Game(s)"
+              }
+            ]
+          }
+        },
+        {
+          "transform": [
+            {
+              "filter": "datum.Region === 'Oceania'"
+            }
+          ],
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 14,
+            "dy": 2,
+            "fontSize": 11,
+            "fontWeight": 600,
+            "font": "Outfit"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "Lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "Lat",
+              "type": "quantitative"
+            },
+            "text": {
+              "value": "Australia"
+            },
+            "color": {
+              "value": "#ee3e75"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    }
+  }
+}

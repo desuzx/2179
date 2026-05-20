@@ -1,0 +1,147 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 965,
+  "height": 380,
+  "background": "#161428",
+  "data": { "url": "data/HistoricalEsportData.csv" },
+  "transform": [
+    { "calculate": "year(toDate(datum.Date))", "as": "Year" },
+    {
+      "aggregate": [
+        { "op": "sum", "field": "Earnings", "as": "TotalEarnings" },
+        { "op": "sum", "field": "Tournaments", "as": "TotalTournaments" },
+        { "op": "sum", "field": "Players", "as": "TotalPlayers" }
+      ],
+      "groupby": ["Year"]
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "interpolate": "monotone",
+        "color": {
+          "x1": 0,
+          "y1": 0,
+          "x2": 0,
+          "y2": 1,
+          "gradient": "linear",
+          "stops": [
+            { "offset": 0, "color": "#ee3e7522" },
+            { "offset": 1, "color": "#16142800" }
+          ]
+        }
+      },
+      "encoding": {
+        "x": { "field": "Year", "type": "quantitative" },
+        "y": { "field": "TotalEarnings", "type": "quantitative" }
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "color": "#ee3e75",
+        "strokeWidth": 2.5,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "quantitative",
+          "axis": {
+            "labelColor": "#9991bb",
+            "labelFontSize": 11,
+            "labelFont": "Outfit",
+            "ticks": false,
+            "domainColor": "#2a2444",
+            "grid": false,
+            "title": null,
+            "format": "d",
+            "labelAngle": 0,
+            "tickCount": 10
+          }
+        },
+        "y": {
+          "field": "TotalEarnings",
+          "type": "quantitative",
+          "axis": {
+            "labelColor": "#9991bb",
+            "labelFontSize": 11,
+            "labelFont": "Outfit",
+            "format": "$~s",
+            "ticks": false,
+            "domainColor": "#2a2444",
+            "gridColor": "#1e1a30",
+            "gridDash": [3, 3],
+            "title": null
+          }
+        }
+      }
+    },
+    {
+      "params": [
+        {
+          "name": "hoverChart3",
+          "select": {
+            "type": "point",
+            "fields": ["Year"],
+            "encodings": ["x"],
+            "nearest": true,
+            "on": "mousemove",
+            "clear": "mouseout"
+          }
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "color": "transparent",
+        "strokeWidth": 40
+      },
+      "encoding": {
+        "x": { "field": "Year", "type": "quantitative" },
+        "tooltip": [
+          { "field": "Year", "title": "Year", "format": "d" },
+          {
+            "field": "TotalEarnings",
+            "title": "Total Prize Money",
+            "format": "$,.0f"
+          },
+          { "field": "TotalTournaments", "title": "Tournaments" },
+          { "field": "TotalPlayers", "title": "Players", "format": "," }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#7f77dd",
+        "strokeWidth": 1,
+        "strokeDash": [4, 4]
+      },
+      "encoding": {
+        "x": { "field": "Year", "type": "quantitative" },
+        "opacity": {
+          "condition": { "param": "hoverChart3", "empty": false, "value": 0.6 },
+          "value": 0
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 80,
+        "color": "#ee3e75"
+      },
+      "encoding": {
+        "x": { "field": "Year", "type": "quantitative" },
+        "y": { "field": "TotalEarnings", "type": "quantitative" },
+        "opacity": {
+          "condition": { "param": "hoverChart3", "empty": false, "value": 1 },
+          "value": 0
+        }
+      }
+    }
+  ],
+  "config": { "view": { "stroke": "transparent" } }
+}

@@ -1,0 +1,898 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1200" />
+  <title>The Global Esports Scene</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0812;
+      font-family: "Outfit", sans-serif;
+      color: #c8c4e0;
+    }
+
+    .dashboard {
+      width: 1200px;
+      margin: 0 auto;
+      background: #0e0c18;
+    }
+
+    /* ═══ HERO ═══ */
+    .hero {
+      background: linear-gradient(180deg, #080612 0%, #0e0c18 100%);
+      padding: 80px 80px 50px;
+      text-align: center;
+    }
+
+    .hero .overline {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #7f77dd;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: "Outfit", sans-serif;
+      font-size: 60px;
+      font-weight: 700;
+      color: #f0eeff;
+      line-height: 1.05;
+      letter-spacing: -1px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: #afa9ec;
+    }
+
+    .hero .subtitle {
+      font-size: 16px;
+      font-weight: 300;
+      color: #4a4460;
+      margin-top: 16px;
+      line-height: 1.7;
+      max-width: 580px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-line {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #534ab7, transparent);
+      margin: 36px auto 0;
+    }
+
+    /* ═══ STAT BANNER ═══ */
+    .stat-banner {
+      display: flex;
+      background: #0a0812;
+      border-top: 1px solid #1a1530;
+      border-bottom: 1px solid #1a1530;
+    }
+
+    .stat-item {
+      flex: 1;
+      text-align: center;
+      padding: 36px 20px;
+      border-right: 1px solid #1a1530;
+    }
+
+    .stat-item:last-child {
+      border-right: none;
+    }
+
+    .stat-item .number {
+      font-size: 40px;
+      font-weight: 700;
+      color: #7f77dd;
+      line-height: 1;
+    }
+
+    .stat-item .label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #2e2a48;
+      margin-top: 8px;
+    }
+
+    /* ═══ SECTIONS ═══ */
+    .section-light {
+      background: #111020;
+      padding: 56px 0 100px;
+      height: auto;
+    }
+
+    .section-dark {
+      background: #0e0c18;
+      padding: 72px 0 80px;
+    }
+
+    .section-inner {
+      padding: 0 60px;
+    }
+
+    /* ═══ SECTION HEADER ═══ */
+    .section-header {
+      margin-bottom: 10px;
+    }
+
+    .section-header .tag {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #dc3072;
+      margin-bottom: 10px;
+    }
+
+    .section-header h2 {
+      font-size: 30px;
+      font-weight: 600;
+      color: #e0dcff;
+      line-height: 1.2;
+    }
+
+    /* ═══ INSIGHT CALLOUT ═══ */
+    .insight-callout {
+      border-left: 3px solid #534ab7;
+      padding: 14px 24px;
+      margin: 28px 60px 48px;
+      background: #0c0a1c;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .insight-callout p {
+      font-size: 16px;
+      font-weight: 400;
+      color: #afa9ec;
+      line-height: 1.6;
+    }
+
+    .insight-callout p em {
+      color: #7f77dd;
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    /* ═══ NARRATIVE ═══ */
+    .narrative {
+      font-size: 15.5px;
+      line-height: 1.8;
+      color: #897fb6;
+      padding: 0 60px;
+      margin-bottom: 24px;
+    }
+
+    .narrative strong {
+      font-weight: 600;
+      color: #9991bb;
+    }
+
+    .narrative em {
+      font-style: italic;
+      color: #7f77dd;
+    }
+
+    /* ═══ SPLIT LAYOUT ═══ */
+    .split-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 48px;
+      padding: 0 60px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    .split-text {
+      flex: 0 0 240px;
+      padding-top: 8px;
+    }
+
+    .split-text .tag {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #dc3072;
+      margin-bottom: 10px;
+    }
+
+    .split-text h2 {
+      font-size: 28px;
+      font-weight: 600;
+      color: #e0dcff;
+      margin-bottom: 16px;
+    }
+
+    .split-text p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #897fb6;
+    }
+
+    .split-text p strong {
+      color: #9991bb;
+      font-weight: 600;
+    }
+
+    .split-text p em {
+      color: #7f77dd;
+      font-style: italic;
+    }
+
+    .split-chart {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* ═══ CHART CARD ═══ */
+    .chart-card {
+      background: #161428;
+      border: 1px solid #201c38;
+      border-radius: 8px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .chart-card-padded {
+      margin: 0 60px 50px;
+    }
+
+    .chart-label {
+      margin-bottom: 12px;
+    }
+
+    .chart-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #e0dcff;
+    }
+
+    .chart-subtitle {
+      font-size: 12px;
+      color: #4a4460;
+      margin-top: 4px;
+    }
+
+    .chart-footer-note {
+      font-size: 14px;
+      color: #4a4460;
+      margin-top: 20px;
+      text-align: center;
+      width: 100%;
+      font-style: italic;
+    }
+
+    .map-legend {
+      text-align: right;
+      min-width: 160px;
+    }
+
+    .legend-label {
+      font-size: 11px;
+      color: #4a4460;
+      margin-bottom: 6px;
+    }
+
+    .legend-bar {
+      height: 10px;
+      width: 160px;
+      border-radius: 4px;
+      background: linear-gradient(to right,
+          #1e1a38,
+          #4a40a0,
+          #7f77dd,
+          #b05090,
+          #d43d70,
+          #ee3e75);
+    }
+
+    .legend-range {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #9991bb;
+      margin-top: 4px;
+    }
+
+    /* ═══ FOOTER ═══ */
+    .footer {
+      text-align: center;
+      padding: 32px 60px 48px;
+      font-size: 12px;
+      color: #2e2a48;
+      line-height: 2;
+      border-top: 1px solid #1a1530;
+      background: #0a0812;
+    }
+
+    /* ═══ TOOLTIP ═══ */
+    .vg-tooltip {
+      background: #161428 !important;
+      border: 1px solid #534ab7 !important;
+      color: #e0dcff !important;
+      font-family: "Outfit", sans-serif !important;
+      font-size: 13px !important;
+      border-radius: 6px !important;
+      padding: 10px 14px !important;
+    }
+
+    .vg-tooltip td.key {
+      color: #7f77dd !important;
+      font-weight: 600;
+    }
+
+    .vg-tooltip td.value {
+      color: #ffffff !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="dashboard">
+    <!-- HERO -->
+    <div class="hero">
+      <div class="overline">
+        F I T 2 1 7 9 &nbsp;·&nbsp; D A T A &nbsp; V I S U A L I S A T I O N
+        &nbsp; 2
+      </div>
+      <h1>The Global <em>Esports</em> Scene</h1>
+      <div class="hero-line"></div>
+    </div>
+
+    <!-- STAT BANNER -->
+    <div class="stat-banner">
+      <div class="stat-item">
+        <div class="number">$1.4B+</div>
+        <div class="label">Total Prize Money</div>
+      </div>
+      <div class="stat-item">
+        <div class="number">180</div>
+        <div class="label">Countries</div>
+      </div>
+      <div class="stat-item">
+        <div class="number">669</div>
+        <div class="label">Games</div>
+      </div>
+      <div class="stat-item">
+        <div class="number">25+ Years</div>
+        <div class="label">of Competition</div>
+      </div>
+    </div>
+
+    <!-- SECTION 1 — MAP TOTAL -->
+    <div class="section-light">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="tag">G L O B A L &nbsp; R E A C H</div>
+          <h2>Which Countries Lead in Esports Prize Money?</h2>
+        </div>
+      </div>
+      <div class="narrative">
+        This map shows the total prize money earned by esports players from
+        each country. We notice that the United States and China are at the
+        top, which makes sense given that they have a both have a huge player
+        base and a long history of competitive gaming. The darker the country,
+        the less prize money it has earned.
+      </div>
+      <div class="chart-card-padded">
+        <div class="chart-card">
+          <div style="
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 12px;
+              ">
+            <div class="chart-label">
+              <div class="chart-title">Global Esports Prize Money</div>
+              <div class="chart-subtitle">
+                Total prize money earned by players from each country — hover
+                for details
+              </div>
+            </div>
+            <div class="map-legend">
+              <div class="legend-label">Total Prize (USD)</div>
+              <div class="legend-bar"></div>
+              <div class="legend-range">
+                <span>$100</span>
+                <span>$333M+</span>
+              </div>
+            </div>
+          </div>
+          <div style="width: 100%; display: flex; justify-content: center">
+            <div id="map1"></div>
+          </div>
+        </div>
+      </div>
+      <div class="insight-callout" style="border-left: none">
+        <p>
+          The <em style="color: #ee3e75">United States and China</em> account
+          for nearly <em style="color: #ee3e75">40%</em> of all esports prize
+          money ever earned, however this changes dramatically when population
+          is taken into account.
+        </p>
+      </div>
+    </div>
+
+    <!-- SECTION 2 — MAP PER CAPITA -->
+    <div class="section-dark">
+      <div class="split-row">
+        <div class="split-text">
+          <div class="tag">P E R &nbsp; C A P I T A</div>
+          <h2>A Different Perspective</h2>
+          <p>
+            Raw prize money favours large countries simply because they have
+            more players. However, if we divide by the population, it reveals
+            a different story.
+            <br /><br />
+            <em style="color: #ee3e75">Denmark</em> ranks #1 in per capita,
+            earning over $10 million per million people. Nearly
+            <em style="color: #ee3e75">4x</em> more than the United States.
+            <br /><br />
+            Nordic countries like Denmark, Finland and Sweden are ranked
+            highly, which is interesting given their small populations.
+          </p>
+        </div>
+        <div class="split-chart">
+          <div class="chart-card">
+            <div style="
+                  width: 100%;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: flex-start;
+                  margin-bottom: 12px;
+                ">
+              <div class="chart-label">
+                <div class="chart-title">
+                  Esports Prize Money Per Million People
+                </div>
+                <div class="chart-subtitle">
+                  Normalised by population
+                </div>
+              </div>
+              <div class="map-legend">
+                <div class="legend-label">Prize per Million (USD)</div>
+                <div class="legend-bar"></div>
+                <div class="legend-range">
+                  <span>$1</span>
+                  <span>$10M+</span>
+                </div>
+              </div>
+            </div>
+            <div style="width: 100%; display: flex; justify-content: center">
+              <div id="map2"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+      <div class="narrative">
+        This chart shows how each country's ranking shifts when we move from total earnings to per capita. Each line
+        connects a country's two positions, meaning that the longer the line, the bigger the change. Out of the top 20
+        nations, only
+        <em style="color: #44d67a">three improved</em> &nbsp; their rank: Denmark, Finland and Sweden, all small Nordic
+        countries. However, everyone else dropped, with <em style="color: #ee3e75">China
+          falling 68 places</em> &nbsp; and the <em style="color: #ee3e75">United States dropping 26</em>.
+        Interestingly,
+        <strong>Korea</strong> barely moves at all <em style="color: #ee3e75">▼ -3 &nbsp;</em>, going from #3 to #6,
+        suggesting that Korea's e-sports scence is huge and is not heavily impacted by it's population. <em
+          style="color: #ee3e75">Australia &nbsp;</em> also has the same effect, where it only had a<em
+          style="color: #ee3e75"> &nbsp;▼ -2
+          shift</em>.
+      </div>
+
+      <!-- Dumbbell  -->
+      <div class="chart-card-padded" style="margin-top: 40px;">
+        <div class="chart-card">
+          <div style="width: 100%; margin-bottom: 12px;">
+            <div class="chart-title">Total Earnings Rank vs. Per Capita Rank (Top 20 Nations)</div>
+            <div class="chart-subtitle">
+              The position of a country in both rankings — line length shows how per-capita compares to total earnings
+              (longer = bigger difference)
+            </div>
+          </div>
+          <div style="width: 100%; display: flex; justify-content: center;">
+            <div id="chart_dumbbell"></div>
+          </div>
+          <div
+            style="display: flex; justify-content: center; gap: 32px; margin-top: 20px; padding: 12px 24px; background: #0c0a1c; border-radius: 6px; border: 1px solid #1e1a30;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 12px; height: 12px; border-radius: 50%; background: #7f77dd;"></div>
+              <span style="font-size: 12px; color: #9991bb; font-family: Outfit;">Total Earnings Rank</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 12px; height: 12px; border-radius: 50%; background: #44d67a;"></div>
+              <span style="font-size: 12px; color: #9991bb; font-family: Outfit;">Per Capita Rank — improved</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 12px; height: 12px; border-radius: 50%; background: #ee3e75;"></div>
+              <span style="font-size: 12px; color: #9991bb; font-family: Outfit;">Per Capita Rank — declined</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+    </div>
+
+
+
+    <!-- SECTION 3 — LINE CHART -->
+    <div class="section-light">
+      <div class="section-inner">
+        <div class="section-header">
+          <div class="tag">G R O W T H &nbsp; & &nbsp; G E N R E</div>
+          <h2>A Billion Dollar Industry</h2>
+        </div>
+      </div>
+
+      <div class="narrative">
+        From its start, esports has transitioned from a niche hobby to a
+        global phenomenon. While total prize pools grew consistently since
+        <em style="color: #ee3e75">2010</em>, the <strong>mix of games</strong>
+        driving that growth has changed over the years as new genres emerged. The dip in <em
+          style="color: #ee3e75">2020</em>&nbsp; is likely due to the COVID-19 pandemic, which caused many events to be
+        cancelled or postponed, additionally in <em style="color: #ee3e75">2024</em> the reason why it is decreasing is
+        likely due to the fact that the data is incomplete as the data only goes until October 2024
+      </div>
+
+      <!-- Total Earnings (Original Section 3) -->
+      <div class="chart-card-padded">
+        <div class="chart-card">
+          <div class="chart-title">Global Esports Prize Money Over Time</div>
+          <div id="chart3"></div>
+        </div>
+      </div>
+
+      <div class="narrative" style="margin-top: 20px; margin-bottom: 20px;">
+        • <strong><em style="color: #f5a623">Strategy:</em></strong> Early esports (1998 to 2010) was mainly only titles
+        like StarCraft, however esports was not as mainstream yet.<br>
+        • <strong><em style="color: #00d1ff">First-Person Shooter:</em></strong> CS:GO, has maintained a steady share
+        throughout the years, it has been consistent within the competitive scene for over a decade.<br>
+        • <strong><em style="color: #ee3e75">MOBA: </em></strong> Dota 2 and League of Legends became massively popular
+        in the 2010s, pushing esports to become mainstream.<br>
+        • <strong><em style="color: #9e86ff">Battle Royale:</em></strong> Since 2017, games like Fortnite and PUBG have
+        quickly risen in popularity, contributing a significant share of prize money in just a few years, an example of
+        this is the 2019 Fortnite World Cup which had a prize pool of $30 million, and one sole winner won $3 million.
+        <br>
+        • <strong><em style="color: #44d67a">Sports:</em></strong> Led by titles such as FIFA and Rocket League. While
+        it has not
+        reached the highs comapred to the other genres, it does have a consistent playerbase
+
+
+
+      </div>
+
+      <div class="chart-card-padded">
+        <div class="chart-card">
+          <div style="margin-bottom: 12px;">
+            <div class="chart-title">Genre Share of Annual Prize Money</div>
+            <div class="chart-subtitle">How the competitive gaming landscape shifted genre by genre (1998–2023)</div>
+          </div>
+          <div id="chart_stacked"></div>
+        </div>
+      </div>
+      <div class="narrative" style="margin-top: 16px; margin-bottom: 24px;">
+        The chart above shows <strong>relative share</strong>, but that can be misleading as when a genre is losing its
+        share, it doesn't necessarily mean that its earning less. However, the chart below will show the actual prize
+        money earned by each genre, reavealing that even when a genre is losing its share, it sometimes still earn more
+        than before, it's just that other genres are growing significantly faster. For example, for the <em
+          style="color: #00d1ff">First-Person Shooter</em> genre, it used to have nearly <em style="color: #00d1ff">60%
+          of all prize money</em> in the 2000s, but by 2015, this share had <em style="color: #00d1ff">dropped to
+          17.8%</em>. Yet its actual prize money went from around $1-3 million to over $10 million by 2015 and is still
+        increasing to this day. The same goes for the <em style="color: #f5a623">Strategy</em> genre.
+      </div>
+
+      <div class="chart-card-padded">
+        <div class="chart-card" style="align-items: center">
+          <div class="chart-title">How Each Genre Contributed</div>
+          <div class="chart-subtitle">
+            ‎
+            <div id="chart5"></div>
+            <div class="chart-footer-note">
+              Note: Each panel has its own y-axis to highlight individual growth patterns. Each chart goes until 2024
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="narrative" style="margin-top: 16px; margin-bottom: 24px;">
+        While genres tell one story, the #1 spot is always shifting. Each line represents the top game from its genre —
+        <em style="color: #ee3e75">MOBA</em>, <em style="color: #00d1ff">FPS</em>&nbsp;,<em
+          style="color: #9e86ff">&nbsp;Battle
+          Royale</em>, <em style="color: #f5a623">Strategy</em> and <em style="color: #44d67a">Sports</em> , using the
+        same colours as the charts above. <em style="color: #f5a623">StarCraft</em>&nbsp; held the #1 spot from 1998 to
+        2012, before <em style="color: #ee3e75">Dota 2</em>&nbsp; in 2013 took over and has mainly been the #1 game in
+        esports ever since, with the exception of the Year 2019 & 2020 where <em style="color: #9e86ff">Fortnite</em>
+        took the #1 spot thanks to the $30M World Cup in 2019, pushing the boundaries of what prize pools could look
+        like within esports.
+      </div>
+      <!-- SECTION 4c — BUMP CHART -->
+      <div class="chart-card-padded">
+        <div class="chart-card">
+          <div style="width: 100%; margin-bottom: 12px;">
+            <div class="chart-title">The #1 Game Each Year (2010 – 2023)</div>
+            <div class="chart-subtitle">Each line represents the #1 game from its genre, color coded via game/genre
+            </div>
+          </div>
+          <div id="chart_bump"></div>
+        </div>
+      </div>
+
+      <!-- SECTION 5 — TOURNAMENTS -->
+      <div class="section-dark">
+        <div class="section-inner">
+          <div class="section-header">
+            <div class="tag">B I G G E S T &nbsp; E V E N T S</div>
+            <h2>Tournament Prizes</h2>
+          </div>
+        </div>
+        <div class="narrative">
+          While many games do have a active competetive scene, the biggest prize pools within the esports scence is
+          currently being dominated by one game and one tournament. <em style="color: #ee3e75">Dota 2 The International,
+            claiming 10 out of 20 spots. </em> The International is an annual world championship tournament for Dota 2
+          which only happens once per year. And for the Internation 2021 tournament, it had a massive <em
+            style="color: #ee3e75">$40 million as it's prize pool</em>, making it the biggest esports tournament prize
+          pool wise in history.
+
+
+        </div>
+        <div class="narrative">
+          Additionally, out of the top 20 tournaments, <em style="color: #ee3e75">17 of them</em>&nbsp; fall within the
+          MOBA genre, being <em style="color: #ee3e75">Dota 2</em>, &nbsp; <em style="color: #ffb800">League of
+            Legends</em>&nbsp; and <em style="color: #00d1ff">Arena of Valor</em>, highlighting how
+          dominant the MOBA genre is within the esports scene. There are only 2 non-MOBA games to be in the top 20,
+          being <em style="color: #9e86ff">Fortnite</em> and <em style="color: #00ff94">PUBG</em>.
+
+        </div>
+        <div class="chart-card-padded">
+          <div class="chart-card">
+            <div style="
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 12px;
+              ">
+              <div class="chart-label">
+                <div class="chart-title">The Biggest Tournaments in History</div>
+                <div class="chart-subtitle">
+                  Circle size proportional to prize pool · Coloured by game
+                </div>
+              </div>
+            </div>
+            <div style="width: 100%; display: flex; justify-content: center">
+              <div id="chart6"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 6 — TOP PLAYERS LOLLIPOP -->
+      <div class="section-light">
+        <div class="section-inner">
+          <div class="section-header">
+            <div class="tag">T H E &nbsp; P L A Y E R S</div>
+            <h2>The World's Highest Earning Players</h2>
+          </div>
+        </div>
+        <div class="narrative">
+          The top 100 highest-earning players in esports history are only located within <em style="color: #ee3e75">27
+            countries</em>.
+          China has the most amount of players, with 24 players in the list, followed by the United States (11) and
+          Denmark (9). <em style="color: #ee3e75">Australia has two players</em>&nbsp; in the top 100.
+
+
+        </div>
+
+        <div class="narrative">
+          From the map, we notice that most of the highest-earning players are located within Europe, this is mainly
+          because the top 20 Highest-Earning Esports Players are all Dota 2 players, and since Dota 2 has the biggest
+          prize pools every year, and it being a game that has been dominated by the <em
+            style="color: #7f77dd">European</em> and <em style="color: #44d67a">Chinese</em>&nbsp; teams. <em
+            style="color: #44d67a">China
+            stands out as it is the largest single bubble</em>&nbsp; with 24 players in the top 100. Additionally,
+          <em style="color: #ee3e75">Australia</em>&nbsp;, still manages to have 2 players within the top 100 mainly
+          because both of these players are Dota 2 competitors, where 1 of them won a Dota 2 International.
+
+        </div>
+        <div class="chart-card-padded">
+          <div class="chart-card">
+            <div
+              style="width: 100%; display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+              <div class="chart-label">
+                <div class="chart-title">Origins of the World's Top 100 Highest-Earning Players</div>
+                <div class="chart-subtitle">Circle size shows number of players in the top 100 — Australia highlighted
+                </div>
+              </div>
+            </div>
+            <div style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 16px;">
+              <div id="chart_bubble"></div>
+              <div class="chart-footer-note">
+                Note: Russia is considered part of Europe as Russian teams compete within the European esports leagues
+              </div>
+              <div
+                style="display: flex; gap: 40px; align-items: center; padding: 12px 24px; background: #0c0a1c; border-radius: 6px; border: 1px solid #1e1a30;">
+
+                <!-- Colour legend -->
+                <div style="display: flex; gap: 32px; margin-top: 14px; padding-left: 12px; align-items: center;">
+
+                  <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <div
+                      style="font-size: 11px; color: #4a4460; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px;">
+                      Region</div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <div style="width: 12px; height: 12px; border-radius: 50%; background: #7f77dd;"></div><span
+                        style="font-size: 12px; color: #9991bb; font-family: Outfit;">Europe</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <div style="width: 12px; height: 12px; border-radius: 50%; background: #44d67a;"></div><span
+                        style="font-size: 12px; color: #9991bb; font-family: Outfit;">Asia</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <div style="width: 12px; height: 12px; border-radius: 50%; background: #ffb800;"></div><span
+                        style="font-size: 12px; color: #9991bb; font-family: Outfit;">North America</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <div style="width: 12px; height: 12px; border-radius: 50%; background: #00d1ff;"></div><span
+                        style="font-size: 12px; color: #9991bb; font-family: Outfit;">Middle East</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <div style="width: 12px; height: 12px; border-radius: 50%; background: #ee3e75;"></div><span
+                        style="font-size: 12px; color: #9991bb; font-family: Outfit;">Oceania</span>
+                    </div>
+                  </div>
+
+                  <div style="width: 1px; height: 100px; background: #1e1a30;"></div>
+
+                  <div>
+                    <div
+                      style="font-size: 11px; color: #4a4460; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">
+                      Players in Top 100</div>
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                      <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+                        <div style="width: 8px; height: 8px; border-radius: 50%; background: #7f77dd; opacity: 0.7;">
+                        </div><span style="font-size: 11px; color: #9991bb; font-family: Outfit;">1</span>
+                      </div>
+                      <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+                        <div style="width: 18px; height: 18px; border-radius: 50%; background: #7f77dd; opacity: 0.7;">
+                        </div><span style="font-size: 11px; color: #9991bb; font-family: Outfit;">5</span>
+                      </div>
+                      <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+                        <div style="width: 28px; height: 28px; border-radius: 50%; background: #7f77dd; opacity: 0.7;">
+                        </div><span style="font-size: 11px; color: #9991bb; font-family: Outfit;">10</span>
+                      </div>
+                      <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+                        <div style="width: 42px; height: 42px; border-radius: 50%; background: #7f77dd; opacity: 0.7;">
+                        </div><span style="font-size: 11px; color: #9991bb; font-family: Outfit;">24</span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="narrative" style="margin-top: 16px;">
+          chart here (maybe)
+        </div>
+        
+
+
+        <div class="narrative" style="margin-top: 16px;">
+          Zooming in on the top 20, every single one of them is a <em style="color: #ee3e75">Dota 2 competitor</em> this
+          shows just how Dota 2 has been the game that has created the most amount of prize money for its players. Of
+          those 20 players, <em style="color: #ee3e75">only one of them is actually a
+            Australian Player</em>&nbsp;&nbsp;: &nbsp;<em style="color: #ee3e75">ana</em> (Anathan Pham), the 4th
+          highest-earning player in
+          the world currently.
+        </div>
+        <div class="chart-card-padded">
+          <div class="chart-card">
+            <div style="width:100%; margin-bottom:12px;">
+              <div class="chart-title">Top 20 Highest Earning Esports Players</div>
+              <div class="chart-subtitle">Ranked by total career prize money</div>
+            </div>
+            <div style="width:100%; display:flex; justify-content:center;">
+              <div id="chart7"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      <!-- FOOTER -->
+      <div class="footer">
+        Data sources: Esports Earnings (esportsearnings.com) &nbsp;·&nbsp; World
+        Bank Population Data &nbsp;·&nbsp; Kaggle Esports Earnings Dataset<br />
+        FIT2179 Data Visualisation &nbsp;·&nbsp; Monash University &nbsp;·&nbsp;
+        2026<br />
+        AI tools (Claude) were used to assist with development of this project,
+        but all code and writing was reviewed and edited by me to ensure
+        accuracy and originality.
+      </div>
+    </div>
+
+    <script>
+      vegaEmbed("#map1", "charts/map_total_prize.json", {
+        actions: false,
+        tooltip: { theme: "custom" },
+      });
+      vegaEmbed("#map2", "charts/map_percapita.json", {
+        actions: false,
+        tooltip: { theme: "custom" },
+      });
+      vegaEmbed("#chart3", "charts/line_chart_earnings.json", {
+        actions: false,
+        tooltip: { theme: "custom" },
+      });
+      vegaEmbed("#chart_stacked", "charts/stacked_area_normalized.json", {
+        actions: false,
+        tooltip: { theme: "custom" },
+      });
+      vegaEmbed("#chart5", "charts/small_multiple.json", {
+        actions: false,
+        tooltip: { theme: "custom" },
+      });
+      vegaEmbed("#chart6", "charts/timeline_tournaments.json", {
+        actions: false,
+        tooltip: { theme: "custom" },
+      });
+      vegaEmbed("#chart_bubble", "charts/bubble_map_players.json", {
+        actions: false,
+        tooltip: { theme: "custom" },
+      });
+      vegaEmbed("#chart7", "charts/lollipop_players.json", {
+        actions: false,
+        tooltip: { theme: "custom" }
+      });
+      vegaEmbed("#chart_bump", "charts/bump_chart_games.json", {
+        actions: false,
+        tooltip: { theme: "custom" }
+      });
+      vegaEmbed("#chart_dumbbell", "charts/dumbbell_rank.json", {
+        actions: false,
+        tooltip: { theme: "custom" }
+      });
+      vegaEmbed("#chart_beeswarm", "charts/beeswarm_players.json", {
+        actions: false,
+        tooltip: { theme: "custom" },
+      });
+
+    </script>
+</body>
+
+</html>

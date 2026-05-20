@@ -1,0 +1,108 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+
+  "width": 860,
+  "height": 500,
+  "projection": { "type": "naturalEarth1" },
+  "background": "#161428",
+  "layer": [
+    {
+      "data": {
+        "url": "https://cdn.jsdelivr.net/npm/vega-datasets@2/data/world-110m.json",
+        "format": { "type": "topojson", "feature": "countries" }
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "#1e1a30",
+        "stroke": "#2a2444",
+        "strokeWidth": 0.5
+      }
+    },
+    {
+      "data": {
+        "url": "https://cdn.jsdelivr.net/npm/vega-datasets@2/data/world-110m.json",
+        "format": { "type": "topojson", "feature": "countries" }
+      },
+      "transform": [
+        {
+          "lookup": "id",
+          "from": {
+            "data": { "url": "data/esports_countries_cleaned.csv" },
+            "key": "id",
+            "fields": [
+              "Country",
+              "TotalPrize",
+              "NumPlayers",
+              "TopGame",
+              "TopGameEarnings",
+              "TopGamePct",
+              "Rank"
+            ]
+          }
+        },
+        { "filter": "datum.TotalPrize != null" }
+      ],
+      "params": [
+        {
+          "name": "hover",
+          "select": { "type": "point", "on": "mouseover" }
+        }
+      ],
+      "mark": { "type": "geoshape", "strokeWidth": 0.6 },
+      "encoding": {
+        "color": {
+          "field": "TotalPrize",
+          "type": "quantitative",
+          "scale": {
+            "type": "log",
+            "range": [
+              "#1e1a38",
+              "#2e2860",
+              "#4a40a0",
+              "#534ab7",
+              "#7f77dd",
+              "#afa9ec",
+              "#ee3e75"
+            ],
+            "domainMin": 100
+          },
+          "legend": null
+        },
+        "stroke": {
+          "condition": { "param": "hover", "empty": false, "value": "#afa9ec" },
+          "value": "#2a2444"
+        },
+        "strokeWidth": {
+          "condition": { "param": "hover", "empty": false, "value": 1.5 },
+          "value": 0.4
+        },
+        "opacity": {
+          "condition": { "param": "hover", "empty": false, "value": 1 },
+          "value": 0.85
+        },
+        "tooltip": [
+          { "field": "Rank", "title": "Rank" },
+          { "field": "Country", "title": "Country" },
+          {
+            "field": "TotalPrize",
+            "title": "Total Prize Money",
+            "format": "$,.0f"
+          },
+          {
+            "field": "NumPlayers",
+            "title": "Players Who Won Money",
+            "format": ","
+          },
+          { "field": "TopGame", "title": "Top Game" },
+          {
+            "field": "TopGameEarnings",
+            "title": "Top Game Earnings",
+            "format": "$,.0f"
+          },
+          { "field": "TopGamePct", "title": "% From Top Game", "format": ".1f" }
+        ]
+      }
+    }
+  ],
+  "config": { "view": { "stroke": "transparent" } }
+}

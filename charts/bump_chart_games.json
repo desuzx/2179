@@ -1,0 +1,533 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 960,
+  "height": 400,
+  "background": "#161428",
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {
+            "game": "StarCraft II",
+            "year": 2010,
+            "rank": 1,
+            "earnings": 820839
+          },
+          {
+            "game": "StarCraft II",
+            "year": 2011,
+            "rank": 1,
+            "earnings": 3222428
+          },
+          {
+            "game": "StarCraft II",
+            "year": 2012,
+            "rank": 1,
+            "earnings": 4237569
+          },
+          {
+            "game": "StarCraft II",
+            "year": 2013,
+            "rank": 2,
+            "earnings": 3856753
+          },
+          {
+            "game": "StarCraft II",
+            "year": 2014,
+            "rank": 2,
+            "earnings": 3473757
+          },
+          {
+            "game": "StarCraft II",
+            "year": 2015,
+            "rank": 3,
+            "earnings": 3017759
+          },
+          {
+            "game": "StarCraft II",
+            "year": 2016,
+            "rank": 3,
+            "earnings": 3182718
+          },
+          {
+            "game": "StarCraft II",
+            "year": 2017,
+            "rank": 3,
+            "earnings": 3416344
+          },
+          {
+            "game": "StarCraft II",
+            "year": 2018,
+            "rank": 4,
+            "earnings": 3980178
+          },
+          {
+            "game": "StarCraft II",
+            "year": 2019,
+            "rank": 5,
+            "earnings": 3174770
+          },
+          {
+            "game": "StarCraft II",
+            "year": 2020,
+            "rank": 5,
+            "earnings": 2197004
+          },
+          {
+            "game": "StarCraft II",
+            "year": 2021,
+            "rank": 5,
+            "earnings": 1814732
+          },
+          {
+            "game": "StarCraft II",
+            "year": 2022,
+            "rank": 5,
+            "earnings": 2188686
+          },
+          {
+            "game": "StarCraft II",
+            "year": 2023,
+            "rank": 5,
+            "earnings": 1958132
+          },
+          {
+            "game": "StarCraft II",
+            "year": 2024,
+            "rank": 4,
+            "earnings": 2151638
+          },
+          {
+            "game": "Dota 2",
+            "year": 2011,
+            "rank": 2,
+            "earnings": 1672768
+          },
+          {
+            "game": "Dota 2",
+            "year": 2012,
+            "rank": 2,
+            "earnings": 2087095
+          },
+          {
+            "game": "Dota 2",
+            "year": 2013,
+            "rank": 1,
+            "earnings": 4548281
+          },
+          {
+            "game": "Dota 2",
+            "year": 2014,
+            "rank": 1,
+            "earnings": 16608181
+          },
+          {
+            "game": "Dota 2",
+            "year": 2015,
+            "rank": 1,
+            "earnings": 31036820
+          },
+          {
+            "game": "Dota 2",
+            "year": 2016,
+            "rank": 1,
+            "earnings": 37464037
+          },
+          {
+            "game": "Dota 2",
+            "year": 2017,
+            "rank": 1,
+            "earnings": 38074599
+          },
+          {
+            "game": "Dota 2",
+            "year": 2018,
+            "rank": 1,
+            "earnings": 41545791
+          },
+          {
+            "game": "Dota 2",
+            "year": 2019,
+            "rank": 2,
+            "earnings": 47108907
+          },
+          {
+            "game": "Dota 2",
+            "year": 2020,
+            "rank": 3,
+            "earnings": 10126576
+          },
+          {
+            "game": "Dota 2",
+            "year": 2021,
+            "rank": 1,
+            "earnings": 47964064
+          },
+          {
+            "game": "Dota 2",
+            "year": 2022,
+            "rank": 1,
+            "earnings": 32954189
+          },
+          {
+            "game": "Dota 2",
+            "year": 2023,
+            "rank": 1,
+            "earnings": 30797380
+          },
+          {
+            "game": "Dota 2",
+            "year": 2024,
+            "rank": 1,
+            "earnings": 18622474
+          },
+          {
+            "game": "Counter-Strike: Global Offensive",
+            "year": 2012,
+            "rank": 3,
+            "earnings": 222539
+          },
+          {
+            "game": "Counter-Strike: Global Offensive",
+            "year": 2013,
+            "rank": 3,
+            "earnings": 1219039
+          },
+          {
+            "game": "Counter-Strike: Global Offensive",
+            "year": 2014,
+            "rank": 3,
+            "earnings": 1962515
+          },
+          {
+            "game": "Counter-Strike: Global Offensive",
+            "year": 2015,
+            "rank": 2,
+            "earnings": 6297500
+          },
+          {
+            "game": "Counter-Strike: Global Offensive",
+            "year": 2016,
+            "rank": 2,
+            "earnings": 17268045
+          },
+          {
+            "game": "Counter-Strike: Global Offensive",
+            "year": 2017,
+            "rank": 2,
+            "earnings": 19295991
+          },
+          {
+            "game": "Counter-Strike: Global Offensive",
+            "year": 2018,
+            "rank": 2,
+            "earnings": 23319746
+          },
+          {
+            "game": "Counter-Strike: Global Offensive",
+            "year": 2019,
+            "rank": 3,
+            "earnings": 22302044
+          },
+          {
+            "game": "Counter-Strike: Global Offensive",
+            "year": 2020,
+            "rank": 2,
+            "earnings": 16088293
+          },
+          {
+            "game": "Counter-Strike: Global Offensive",
+            "year": 2021,
+            "rank": 3,
+            "earnings": 21854853
+          },
+          {
+            "game": "Counter-Strike: Global Offensive",
+            "year": 2022,
+            "rank": 3,
+            "earnings": 17502410
+          },
+          {
+            "game": "Counter-Strike: Global Offensive",
+            "year": 2023,
+            "rank": 3,
+            "earnings": 15213945
+          },
+          {
+            "game": "Fortnite",
+            "year": 2018,
+            "rank": 3,
+            "earnings": 19933737
+          },
+          {
+            "game": "Fortnite",
+            "year": 2019,
+            "rank": 1,
+            "earnings": 80686809
+          },
+          {
+            "game": "Fortnite",
+            "year": 2020,
+            "rank": 1,
+            "earnings": 17896593
+          },
+          {
+            "game": "Fortnite",
+            "year": 2021,
+            "rank": 2,
+            "earnings": 23032953
+          },
+          {
+            "game": "Fortnite",
+            "year": 2022,
+            "rank": 2,
+            "earnings": 18671068
+          },
+          {
+            "game": "Fortnite",
+            "year": 2023,
+            "rank": 2,
+            "earnings": 19720438
+          },
+          {
+            "game": "Fortnite",
+            "year": 2024,
+            "rank": 2,
+            "earnings": 11071101
+          },
+          {
+            "game": "Rocket League",
+            "year": 2015,
+            "rank": 5,
+            "earnings": 23977
+          },
+          {
+            "game": "Rocket League",
+            "year": 2016,
+            "rank": 4,
+            "earnings": 508706
+          },
+          {
+            "game": "Rocket League",
+            "year": 2017,
+            "rank": 4,
+            "earnings": 1594601
+          },
+          {
+            "game": "Rocket League",
+            "year": 2018,
+            "rank": 5,
+            "earnings": 2548273
+          },
+          {
+            "game": "Rocket League",
+            "year": 2019,
+            "rank": 4,
+            "earnings": 3313427
+          },
+          {
+            "game": "Rocket League",
+            "year": 2020,
+            "rank": 4,
+            "earnings": 4418824
+          },
+          {
+            "game": "Rocket League",
+            "year": 2021,
+            "rank": 4,
+            "earnings": 5753551
+          },
+          {
+            "game": "Rocket League",
+            "year": 2022,
+            "rank": 4,
+            "earnings": 9719922
+          },
+          {
+            "game": "Rocket League",
+            "year": 2023,
+            "rank": 4,
+            "earnings": 8733013
+          },
+          {
+            "game": "Rocket League",
+            "year": 2024,
+            "rank": 3,
+            "earnings": 5815685
+          }
+        ]
+      },
+      "mark": {
+        "type": "line",
+        "point": {
+          "filled": true,
+          "size": 40,
+          "strokeWidth": 0
+        },
+        "strokeWidth": 2,
+        "interpolate": "monotone"
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "axis": {
+            "title": null,
+            "labelAngle": -45,
+            "labelColor": "#9991bb",
+            "labelFont": "Outfit",
+            "labelFontSize": 11,
+            "tickColor": "#2a2444",
+            "domainColor": "#2a2444",
+            "gridColor": "#1e1a30",
+            "gridDash": [3, 3]
+          }
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0.4, 5.3],
+            "reverse": true,
+            "nice": false
+          },
+          "axis": {
+            "title": null,
+            "values": [1, 2, 3, 4, 5],
+            "labelExpr": "'#' + datum.value",
+            "labelColor": "#9991bb",
+            "labelFont": "Outfit",
+            "labelFontSize": 11,
+            "gridColor": "#1e1a30",
+            "gridDash": [3, 3],
+            "domainColor": "#2a2444",
+            "tickColor": "#2a2444"
+          }
+        },
+        "color": {
+          "field": "game",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Dota 2",
+              "Counter-Strike: Global Offensive",
+              "Fortnite",
+              "StarCraft II",
+              "Rocket League"
+            ],
+            "range": ["#ee3e75", "#00d1ff", "#9e86ff", "#f5a623", "#44d67a"]
+          },
+          "legend": {
+            "title": "Game · Genre Champion",
+            "titleColor": "#c8c4e0",
+            "titleFont": "Outfit",
+            "titleFontSize": 12,
+            "titleFontWeight": "bold",
+            "labelColor": "#c8c4e0",
+            "labelFont": "Outfit",
+            "labelFontSize": 11,
+            "symbolSize": 100,
+            "symbolStrokeWidth": 2,
+            "orient": "bottom",
+            "columns": 3,
+            "padding": 8,
+            "rowPadding": 6
+          }
+        },
+        "tooltip": [
+          {
+            "field": "game",
+            "title": "Game"
+          },
+          {
+            "field": "year",
+            "title": "Year"
+          },
+          {
+            "field": "rank",
+            "title": "Rank (within group)"
+          },
+          {
+            "field": "earnings",
+            "title": "Annual Earnings",
+            "format": "$,.0f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": 2011,
+            "rank": 0.6,
+            "label": "Peaked from 1998–2012",
+            "al": "left",
+            "color": "#f5a623"
+          },
+          {
+            "year": 2015,
+            "rank": 0.7,
+            "label": "Dota 2 takes over",
+            "al": "center",
+            "color": "#ee3e75"
+          },
+
+          {
+            "year": 2019,
+            "rank": 0.6,
+            "label": "Fortnite World Cup",
+            "al": "center",
+            "color": "#9e86ff"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontStyle": "italic",
+        "fontSize": 10,
+        "font": "Outfit",
+        "dx": 4
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0.4, 5.3],
+            "reverse": true,
+            "nice": false
+          }
+        },
+        "text": {
+          "field": "label"
+        },
+        "align": {
+          "field": "al"
+        },
+        "color": {
+          "field": "color",
+          "type": "nominal",
+          "scale": null,
+          "legend": null
+        }
+      }
+    }
+  ],
+  "config": {
+    "font": "Outfit",
+    "view": {
+      "stroke": "transparent"
+    },
+    "legend": {
+      "labelColor": "#c8c4e0",
+      "titleColor": "#c8c4e0",
+      "labelFont": "Outfit",
+      "titleFont": "Outfit"
+    }
+  }
+}
