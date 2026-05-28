@@ -1,32 +1,86 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "width": 680,
+  "width": "container",
   "height": 380,
-  "projection": { "type": "naturalEarth1" },
-  "background": "#161428",
+  "projection": {
+    "type": "naturalEarth1"
+  },
+  "background": "#f4ebd0",
   "layer": [
     {
       "data": {
         "url": "https://cdn.jsdelivr.net/npm/vega-datasets@2/data/world-110m.json",
-        "format": { "type": "topojson", "feature": "countries" }
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
       },
       "mark": {
         "type": "geoshape",
-        "fill": "#1e1a30",
-        "stroke": "#2a2444",
+        "fill": "#c9b88a",
+        "stroke": "#a89568",
         "strokeWidth": 0.5
       }
     },
     {
       "data": {
         "url": "https://cdn.jsdelivr.net/npm/vega-datasets@2/data/world-110m.json",
-        "format": { "type": "topojson", "feature": "countries" }
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
       },
       "transform": [
         {
           "lookup": "id",
           "from": {
-            "data": { "url": "data/esports_countries_percapita.csv" },
+            "data": {
+              "url": "data/esports_countries_percapita.csv"
+            },
+            "key": "id",
+            "fields": [
+              "Country",
+              "PrizePerMillion"
+            ]
+          }
+        },
+        {
+          "filter": "datum.PrizePerMillion == null"
+        },
+        {
+          "calculate": "'No data available'",
+          "as": "NoDataMsg"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "strokeWidth": 0
+      },
+      "encoding": {
+        "color": {
+          "value": "transparent"
+        },
+        "tooltip": {
+          "field": "NoDataMsg",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "https://cdn.jsdelivr.net/npm/vega-datasets@2/data/world-110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
+      },
+      "transform": [
+        {
+          "lookup": "id",
+          "from": {
+            "data": {
+              "url": "data/esports_countries_percapita.csv"
+            },
             "key": "id",
             "fields": [
               "Country",
@@ -42,15 +96,23 @@
             ]
           }
         },
-        { "filter": "datum.PrizePerMillion != null" }
+        {
+          "filter": "datum.PrizePerMillion != null"
+        }
       ],
       "params": [
         {
           "name": "hover2",
-          "select": { "type": "point", "on": "mouseover" }
+          "select": {
+            "type": "point",
+            "on": "mouseover"
+          }
         }
       ],
-      "mark": { "type": "geoshape", "strokeWidth": 0.4 },
+      "mark": {
+        "type": "geoshape",
+        "strokeWidth": 0.4
+      },
       "encoding": {
         "color": {
           "field": "PrizePerMillion",
@@ -58,13 +120,13 @@
           "scale": {
             "type": "log",
             "range": [
-              "#1e1a38",
-              "#2e2860",
-              "#4a40a0",
-              "#534ab7",
-              "#7f77dd",
-              "#afa9ec",
-              "#ee3e75"
+              "#f1c14b",
+              "#e8853a",
+              "#d94545",
+              "#e0457b",
+              "#a04578",
+              "#6e4ba0",
+              "#3a2a5c"
             ],
             "domainMin": 1
           },
@@ -74,38 +136,81 @@
           "condition": {
             "param": "hover2",
             "empty": false,
-            "value": "#afa9ec"
+            "value": "#6e4ba0"
           },
-          "value": "#2a2444"
+          "value": "#a89568"
         },
         "strokeWidth": {
-          "condition": { "param": "hover2", "empty": false, "value": 1.5 },
+          "condition": {
+            "param": "hover2",
+            "empty": false,
+            "value": 1.5
+          },
           "value": 0.4
         },
         "opacity": {
-          "condition": { "param": "hover2", "empty": false, "value": 1 },
-          "value": 0.85
+          "condition": [
+            {
+              "param": "hover2",
+              "empty": false,
+              "value": 1
+            },
+            {
+              "test": "highlightCountry === '' || datum.Country === highlightCountry",
+              "value": 0.9
+            }
+          ],
+          "value": 0.15
         },
         "tooltip": [
-          { "field": "PerCapitaRank", "title": "Per Capita Rank" },
-          { "field": "Rank", "title": "Total Earnings Rank" },
-          { "field": "Country", "title": "Country" },
+          {
+            "field": "PerCapitaRank",
+            "title": "Per Capita Rank"
+          },
+          {
+            "field": "Rank",
+            "title": "Total Earnings Rank"
+          },
+          {
+            "field": "Country",
+            "title": "Country"
+          },
           {
             "field": "PrizePerMillion",
             "title": "Prize per Million People",
             "format": "$,.0f"
           },
-
           {
             "field": "TotalPrize",
             "title": "Total Prize Money",
             "format": "$,.0f"
           },
-          { "field": "Population", "title": "Population", "format": "," },
-          { "field": "TopGame", "title": "Top Game" }
+          {
+            "field": "Population",
+            "title": "Population",
+            "format": ","
+          },
+          {
+            "field": "TopGame",
+            "title": "Top Game"
+          }
         ]
       }
     }
   ],
-  "config": { "view": { "stroke": "transparent" } }
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    }
+  },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "params": [
+    {
+      "name": "highlightCountry",
+      "value": ""
+    }
+  ]
 }

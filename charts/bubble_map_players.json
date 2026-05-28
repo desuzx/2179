@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "width": 820,
+  "width": "container",
   "height": 430,
-  "background": "#161428",
+  "background": "#f4ebd0",
   "params": [
     {
       "name": "zoom_level",
@@ -17,17 +17,41 @@
     },
     {
       "name": "center_to",
-      "value": [0, 20],
+      "value": [
+        0,
+        20
+      ],
       "bind": {
         "input": "select",
         "options": [
-          [0, 20],
-          [15, 50],
-          [100, 35],
-          [-95, 40],
-          [135, -25]
+          [
+            0,
+            20
+          ],
+          [
+            15,
+            50
+          ],
+          [
+            100,
+            35
+          ],
+          [
+            -95,
+            40
+          ],
+          [
+            135,
+            -25
+          ]
         ],
-        "labels": ["World", "Europe", "Asia", "North America", "Australia"],
+        "labels": [
+          "World",
+          "Europe",
+          "Asia",
+          "North America",
+          "Australia"
+        ],
         "name": "Focus: "
       }
     }
@@ -48,7 +72,7 @@
       },
       "mark": {
         "type": "geoshape",
-        "fill": "#0c0a1c",
+        "fill": "#ede1c2",
         "stroke": null
       }
     },
@@ -113,7 +137,7 @@
           {
             "Country": "Ukraine",
             "Count": 5,
-            "Lat": 49.0,
+            "Lat": 49,
             "Lon": 31.38,
             "Region": "Europe",
             "TopGame": "Dota 2"
@@ -293,7 +317,7 @@
           "mark": {
             "type": "circle",
             "opacity": 0.82,
-            "stroke": "#161428",
+            "stroke": "#f4ebd0",
             "strokeWidth": 1
           },
           "encoding": {
@@ -310,8 +334,14 @@
               "type": "quantitative",
               "scale": {
                 "type": "sqrt",
-                "domain": [1, 24],
-                "range": [60, 2200]
+                "domain": [
+                  1,
+                  24
+                ],
+                "range": [
+                  60,
+                  2200
+                ]
               },
               "legend": null
             },
@@ -326,7 +356,13 @@
                   "Middle East",
                   "Oceania"
                 ],
-                "range": ["#7f77dd", "#44d67a", "#ffb800", "#00d1ff", "#ee3e75"]
+                "range": [
+                  "#6e4ba0",
+                  "#5fa752",
+                  "#f1c14b",
+                  "#3a76b8",
+                  "#e0457b"
+                ]
               },
               "legend": null
             },
@@ -363,7 +399,7 @@
             "dy": 2,
             "fontSize": 11,
             "fontWeight": 600,
-            "font": "Outfit"
+            "font": "Space Grotesk"
           },
           "encoding": {
             "longitude": {
@@ -378,7 +414,7 @@
               "value": "Australia"
             },
             "color": {
-              "value": "#ee3e75"
+              "value": "#e0457b"
             }
           }
         }
@@ -389,5 +425,9 @@
     "view": {
       "stroke": "transparent"
     }
+  },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
   }
 }

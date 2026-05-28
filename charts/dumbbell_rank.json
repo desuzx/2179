@@ -1,15 +1,33 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "width": 820,
+  "width": "container",
   "height": 540,
-  "background": "#161428",
-  "padding": { "left": 16, "right": 16, "top": 28, "bottom": 16 },
-  "data": { "url": "data/esports_countries_percapita.csv" },
+  "background": "#f4ebd0",
+  "padding": {
+    "left": 16,
+    "right": 16,
+    "top": 28,
+    "bottom": 16
+  },
+  "data": {
+    "url": "data/esports_countries_percapita.csv"
+  },
   "transform": [
-    { "calculate": "toNumber(datum.Rank)", "as": "Rank" },
-    { "calculate": "toNumber(datum.PerCapitaRank)", "as": "PerCapitaRank" },
-    { "filter": "datum.Rank <= 20" },
-    { "calculate": "datum.Rank - datum.PerCapitaRank", "as": "Shift" },
+    {
+      "calculate": "toNumber(datum.Rank)",
+      "as": "Rank"
+    },
+    {
+      "calculate": "toNumber(datum.PerCapitaRank)",
+      "as": "PerCapitaRank"
+    },
+    {
+      "filter": "datum.Rank <= 20"
+    },
+    {
+      "calculate": "datum.Rank - datum.PerCapitaRank",
+      "as": "Shift"
+    },
     {
       "calculate": "datum.Shift > 0 ? 'improved' : 'declined'",
       "as": "Direction"
@@ -18,17 +36,23 @@
       "calculate": "datum.Shift > 0 ? '▲ +' + datum.Shift : '▼ ' + datum.Shift",
       "as": "ShiftLabel"
     },
-    { "calculate": "datum.Country == 'Australia'", "as": "IsAustralia" }
+    {
+      "calculate": "datum.Country == 'Australia'",
+      "as": "IsAustralia"
+    }
   ],
   "encoding": {
     "y": {
       "field": "Country",
       "type": "nominal",
-      "sort": { "field": "Shift", "order": "descending" },
+      "sort": {
+        "field": "Shift",
+        "order": "descending"
+      },
       "axis": {
-        "labelColor": "#c8c4e0",
+        "labelColor": "#1a1410",
         "labelFontSize": 12,
-        "labelFont": "Outfit",
+        "labelFont": "Space Grotesk",
         "labelFontWeight": 500,
         "title": null,
         "ticks": false,
@@ -39,50 +63,94 @@
   },
   "layer": [
     {
-      "transform": [{ "filter": "datum.IsAustralia" }],
+      "transform": [
+        {
+          "filter": "datum.IsAustralia"
+        }
+      ],
       "mark": {
         "type": "bar",
-        "color": "#ee3e75",
+        "color": "#e0457b",
         "opacity": 0.08,
         "height": 22
       },
       "encoding": {
-        "x": { "datum": 0 },
-        "x2": { "datum": 82 }
+        "x": {
+          "datum": 0
+        },
+        "x2": {
+          "datum": 82
+        }
       }
     },
     {
-      "mark": { "type": "rule", "strokeWidth": 3.5, "opacity": 0.85 },
+      "mark": {
+        "type": "rule",
+        "strokeWidth": 3.5,
+        "opacity": 0.85
+      },
       "encoding": {
         "x": {
           "field": "Rank",
           "type": "quantitative",
-          "scale": { "domain": [0, 82] },
+          "scale": {
+            "domain": [
+              0,
+              82
+            ]
+          },
           "axis": {
             "title": "Global Rank (1 = best)",
-            "titleColor": "#4a4460",
-            "titleFont": "Outfit",
+            "titleColor": "#5a4d3a",
+            "titleFont": "Space Grotesk",
             "titleFontSize": 11,
             "titlePadding": 12,
-            "labelColor": "#9991bb",
-            "labelFont": "Outfit",
+            "labelColor": "#3a3026",
+            "labelFont": "Space Grotesk",
             "labelFontSize": 11,
             "ticks": false,
-            "domainColor": "#2a2444",
-            "gridColor": "#1e1a30",
-            "gridDash": [3, 3],
-            "values": [1, 10, 20, 30, 40, 50, 60, 70]
+            "domainColor": "#a89568",
+            "gridColor": "#c9b88a",
+            "gridDash": [
+              3,
+              3
+            ],
+            "values": [
+              1,
+              10,
+              20,
+              30,
+              40,
+              50,
+              60,
+              70
+            ]
           }
         },
-        "x2": { "field": "PerCapitaRank" },
+        "x2": {
+          "field": "PerCapitaRank"
+        },
         "color": {
           "field": "Direction",
           "type": "nominal",
           "scale": {
-            "domain": ["improved", "declined"],
-            "range": ["#44d67a", "#ee3e75"]
+            "domain": [
+              "improved",
+              "declined"
+            ],
+            "range": [
+              "#5fa752",
+              "#e0457b"
+            ]
           },
           "legend": null
+        },
+        "opacity": {
+          "condition": {
+            "test": "highlightCountry === '' || datum.Country === highlightCountry",
+            "value": 1
+          },
+          "value": 0.18
         }
       }
     },
@@ -91,18 +159,42 @@
         "type": "circle",
         "size": 200,
         "opacity": 0.95,
-        "stroke": "#161428",
+        "stroke": "#f4ebd0",
         "strokeWidth": 2
       },
       "encoding": {
-        "x": { "field": "Rank", "type": "quantitative" },
-        "color": { "value": "#7f77dd" },
+        "x": {
+          "field": "Rank",
+          "type": "quantitative"
+        },
+        "color": {
+          "value": "#e8a838"
+        },
         "tooltip": [
-          { "field": "Country", "title": "Country" },
-          { "field": "Rank", "title": "Total Earnings Rank" },
-          { "field": "PerCapitaRank", "title": "Per Capita Rank" },
-          { "field": "ShiftLabel", "title": "Shift" }
-        ]
+          {
+            "field": "Country",
+            "title": "Country"
+          },
+          {
+            "field": "Rank",
+            "title": "Total Earnings Rank"
+          },
+          {
+            "field": "PerCapitaRank",
+            "title": "Per Capita Rank"
+          },
+          {
+            "field": "ShiftLabel",
+            "title": "Shift"
+          }
+        ],
+        "opacity": {
+          "condition": {
+            "test": "highlightCountry === '' || datum.Country === highlightCountry",
+            "value": 1
+          },
+          "value": 0.18
+        }
       }
     },
     {
@@ -110,26 +202,54 @@
         "type": "circle",
         "size": 260,
         "opacity": 1,
-        "stroke": "#161428",
+        "stroke": "#f4ebd0",
         "strokeWidth": 2
       },
       "encoding": {
-        "x": { "field": "PerCapitaRank", "type": "quantitative" },
+        "x": {
+          "field": "PerCapitaRank",
+          "type": "quantitative"
+        },
         "color": {
           "field": "Direction",
           "type": "nominal",
           "scale": {
-            "domain": ["improved", "declined"],
-            "range": ["#44d67a", "#ee3e75"]
+            "domain": [
+              "improved",
+              "declined"
+            ],
+            "range": [
+              "#5fa752",
+              "#e0457b"
+            ]
           },
           "legend": null
         },
         "tooltip": [
-          { "field": "Country", "title": "Country" },
-          { "field": "Rank", "title": "Total Earnings Rank" },
-          { "field": "PerCapitaRank", "title": "Per Capita Rank" },
-          { "field": "ShiftLabel", "title": "Shift" }
-        ]
+          {
+            "field": "Country",
+            "title": "Country"
+          },
+          {
+            "field": "Rank",
+            "title": "Total Earnings Rank"
+          },
+          {
+            "field": "PerCapitaRank",
+            "title": "Per Capita Rank"
+          },
+          {
+            "field": "ShiftLabel",
+            "title": "Shift"
+          }
+        ],
+        "opacity": {
+          "condition": {
+            "test": "highlightCountry === '' || datum.Country === highlightCountry",
+            "value": 1
+          },
+          "value": 0.18
+        }
       }
     },
     {
@@ -138,22 +258,53 @@
         "align": "left",
         "fontSize": 13,
         "fontWeight": 700,
-        "font": "Outfit"
+        "font": "Space Grotesk"
       },
       "encoding": {
-        "x": { "datum": 76 },
-        "text": { "field": "ShiftLabel" },
+        "x": {
+          "datum": 76
+        },
+        "text": {
+          "field": "ShiftLabel"
+        },
         "color": {
           "field": "Direction",
           "type": "nominal",
           "scale": {
-            "domain": ["improved", "declined"],
-            "range": ["#44d67a", "#ee3e75"]
+            "domain": [
+              "improved",
+              "declined"
+            ],
+            "range": [
+              "#5fa752",
+              "#e0457b"
+            ]
           },
           "legend": null
+        },
+        "opacity": {
+          "condition": {
+            "test": "highlightCountry === '' || datum.Country === highlightCountry",
+            "value": 1
+          },
+          "value": 0.18
         }
       }
     }
   ],
-  "config": { "view": { "stroke": "transparent" } }
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    }
+  },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "params": [
+    {
+      "name": "highlightCountry",
+      "value": ""
+    }
+  ]
 }

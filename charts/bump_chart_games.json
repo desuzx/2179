@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "width": 960,
+  "width": "container",
   "height": 400,
-  "background": "#161428",
+  "background": "#f4ebd0",
   "layer": [
     {
       "data": {
@@ -361,10 +361,11 @@
         "type": "line",
         "point": {
           "filled": true,
-          "size": 40,
-          "strokeWidth": 0
+          "size": 80,
+          "stroke": "#5a4d3a",
+          "strokeWidth": 1
         },
-        "strokeWidth": 2,
+        "strokeWidth": 3.5,
         "interpolate": "monotone"
       },
       "encoding": {
@@ -374,34 +375,49 @@
           "axis": {
             "title": null,
             "labelAngle": -45,
-            "labelColor": "#9991bb",
-            "labelFont": "Outfit",
+            "labelColor": "#3a3026",
+            "labelFont": "Space Grotesk",
             "labelFontSize": 11,
-            "tickColor": "#2a2444",
-            "domainColor": "#2a2444",
-            "gridColor": "#1e1a30",
-            "gridDash": [3, 3]
+            "tickColor": "#a89568",
+            "domainColor": "#a89568",
+            "gridColor": "#c9b88a",
+            "gridDash": [
+              3,
+              3
+            ]
           }
         },
         "y": {
           "field": "rank",
           "type": "quantitative",
           "scale": {
-            "domain": [0.4, 5.3],
+            "domain": [
+              0.4,
+              5.3
+            ],
             "reverse": true,
             "nice": false
           },
           "axis": {
             "title": null,
-            "values": [1, 2, 3, 4, 5],
+            "values": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
             "labelExpr": "'#' + datum.value",
-            "labelColor": "#9991bb",
-            "labelFont": "Outfit",
+            "labelColor": "#3a3026",
+            "labelFont": "Space Grotesk",
             "labelFontSize": 11,
-            "gridColor": "#1e1a30",
-            "gridDash": [3, 3],
-            "domainColor": "#2a2444",
-            "tickColor": "#2a2444"
+            "gridColor": "#c9b88a",
+            "gridDash": [
+              3,
+              3
+            ],
+            "domainColor": "#a89568",
+            "tickColor": "#a89568"
           }
         },
         "color": {
@@ -415,16 +431,22 @@
               "StarCraft II",
               "Rocket League"
             ],
-            "range": ["#ee3e75", "#00d1ff", "#9e86ff", "#f5a623", "#44d67a"]
+            "range": [
+              "#e0457b",
+              "#3a76b8",
+              "#a065c4",
+              "#e8853a",
+              "#5fa752"
+            ]
           },
           "legend": {
             "title": "Game · Genre Champion",
-            "titleColor": "#c8c4e0",
-            "titleFont": "Outfit",
+            "titleColor": "#1a1410",
+            "titleFont": "Space Grotesk",
             "titleFontSize": 12,
             "titleFontWeight": "bold",
-            "labelColor": "#c8c4e0",
-            "labelFont": "Outfit",
+            "labelColor": "#1a1410",
+            "labelFont": "Space Grotesk",
             "labelFontSize": 11,
             "symbolSize": 100,
             "symbolStrokeWidth": 2,
@@ -463,31 +485,38 @@
             "rank": 0.6,
             "label": "Peaked from 1998–2012",
             "al": "left",
-            "color": "#f5a623"
+            "color": "#f1c14b"
           },
           {
-            "year": 2015,
-            "rank": 0.7,
-            "label": "Dota 2 takes over",
-            "al": "center",
-            "color": "#ee3e75"
+            "year": 2013,
+            "rank": 0.6,
+            "label": "Dota 2 takes #1",
+            "al": "left",
+            "color": "#e0457b"
           },
-
           {
             "year": 2019,
             "rank": 0.6,
-            "label": "Fortnite World Cup",
+            "label": "Fortnite takes #1, World Cup",
             "al": "center",
-            "color": "#9e86ff"
+            "color": "#a065c4"
+          },
+          {
+            "year": 2021,
+            "rank": 0.6,
+            "label": "Dota 2 retakes #1",
+            "al": "right",
+            "color": "#e0457b"
           }
         ]
       },
       "mark": {
         "type": "text",
-        "fontStyle": "italic",
-        "fontSize": 10,
-        "font": "Outfit",
-        "dx": 4
+        "fontStyle": "normal",
+        "fontSize": 11,
+        "font": "Space Grotesk",
+        "dx": 4,
+        "fontWeight": 700
       },
       "encoding": {
         "x": {
@@ -498,7 +527,10 @@
           "field": "rank",
           "type": "quantitative",
           "scale": {
-            "domain": [0.4, 5.3],
+            "domain": [
+              0.4,
+              5.3
+            ],
             "reverse": true,
             "nice": false
           }
@@ -519,15 +551,19 @@
     }
   ],
   "config": {
-    "font": "Outfit",
+    "font": "Space Grotesk",
     "view": {
       "stroke": "transparent"
     },
     "legend": {
-      "labelColor": "#c8c4e0",
-      "titleColor": "#c8c4e0",
-      "labelFont": "Outfit",
-      "titleFont": "Outfit"
+      "labelColor": "#1a1410",
+      "titleColor": "#1a1410",
+      "labelFont": "Space Grotesk",
+      "titleFont": "Space Grotesk"
     }
+  },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
   }
 }

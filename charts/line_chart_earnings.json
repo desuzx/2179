@@ -1,18 +1,37 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "width": 965,
+  "width": "container",
   "height": 380,
-  "background": "#161428",
-  "data": { "url": "data/HistoricalEsportData.csv" },
+  "background": "#f4ebd0",
+  "data": {
+    "url": "data/HistoricalEsportData.csv"
+  },
   "transform": [
-    { "calculate": "year(toDate(datum.Date))", "as": "Year" },
+    {
+      "calculate": "year(toDate(datum.Date))",
+      "as": "Year"
+    },
     {
       "aggregate": [
-        { "op": "sum", "field": "Earnings", "as": "TotalEarnings" },
-        { "op": "sum", "field": "Tournaments", "as": "TotalTournaments" },
-        { "op": "sum", "field": "Players", "as": "TotalPlayers" }
+        {
+          "op": "sum",
+          "field": "Earnings",
+          "as": "TotalEarnings"
+        },
+        {
+          "op": "sum",
+          "field": "Tournaments",
+          "as": "TotalTournaments"
+        },
+        {
+          "op": "sum",
+          "field": "Players",
+          "as": "TotalPlayers"
+        }
       ],
-      "groupby": ["Year"]
+      "groupby": [
+        "Year"
+      ]
     }
   ],
   "layer": [
@@ -27,20 +46,32 @@
           "y2": 1,
           "gradient": "linear",
           "stops": [
-            { "offset": 0, "color": "#ee3e7522" },
-            { "offset": 1, "color": "#16142800" }
+            {
+              "offset": 0,
+              "color": "#e0457b33"
+            },
+            {
+              "offset": 1,
+              "color": "#f4ebd000"
+            }
           ]
         }
       },
       "encoding": {
-        "x": { "field": "Year", "type": "quantitative" },
-        "y": { "field": "TotalEarnings", "type": "quantitative" }
+        "x": {
+          "field": "Year",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "TotalEarnings",
+          "type": "quantitative"
+        }
       }
     },
     {
       "mark": {
         "type": "line",
-        "color": "#ee3e75",
+        "color": "#e0457b",
         "strokeWidth": 2.5,
         "interpolate": "monotone"
       },
@@ -49,11 +80,11 @@
           "field": "Year",
           "type": "quantitative",
           "axis": {
-            "labelColor": "#9991bb",
+            "labelColor": "#3a3026",
             "labelFontSize": 11,
-            "labelFont": "Outfit",
+            "labelFont": "Space Grotesk",
             "ticks": false,
-            "domainColor": "#2a2444",
+            "domainColor": "#a89568",
             "grid": false,
             "title": null,
             "format": "d",
@@ -65,14 +96,17 @@
           "field": "TotalEarnings",
           "type": "quantitative",
           "axis": {
-            "labelColor": "#9991bb",
+            "labelColor": "#3a3026",
             "labelFontSize": 11,
-            "labelFont": "Outfit",
+            "labelFont": "Space Grotesk",
             "format": "$~s",
             "ticks": false,
-            "domainColor": "#2a2444",
-            "gridColor": "#1e1a30",
-            "gridDash": [3, 3],
+            "domainColor": "#a89568",
+            "gridColor": "#c9b88a",
+            "gridDash": [
+              3,
+              3
+            ],
             "title": null
           }
         }
@@ -84,8 +118,12 @@
           "name": "hoverChart3",
           "select": {
             "type": "point",
-            "fields": ["Year"],
-            "encodings": ["x"],
+            "fields": [
+              "Year"
+            ],
+            "encodings": [
+              "x"
+            ],
             "nearest": true,
             "on": "mousemove",
             "clear": "mouseout"
@@ -98,30 +136,54 @@
         "strokeWidth": 40
       },
       "encoding": {
-        "x": { "field": "Year", "type": "quantitative" },
+        "x": {
+          "field": "Year",
+          "type": "quantitative"
+        },
         "tooltip": [
-          { "field": "Year", "title": "Year", "format": "d" },
+          {
+            "field": "Year",
+            "title": "Year",
+            "format": "d"
+          },
           {
             "field": "TotalEarnings",
             "title": "Total Prize Money",
             "format": "$,.0f"
           },
-          { "field": "TotalTournaments", "title": "Tournaments" },
-          { "field": "TotalPlayers", "title": "Players", "format": "," }
+          {
+            "field": "TotalTournaments",
+            "title": "Tournaments"
+          },
+          {
+            "field": "TotalPlayers",
+            "title": "Players",
+            "format": ","
+          }
         ]
       }
     },
     {
       "mark": {
         "type": "rule",
-        "color": "#7f77dd",
+        "color": "#6e4ba0",
         "strokeWidth": 1,
-        "strokeDash": [4, 4]
+        "strokeDash": [
+          4,
+          4
+        ]
       },
       "encoding": {
-        "x": { "field": "Year", "type": "quantitative" },
+        "x": {
+          "field": "Year",
+          "type": "quantitative"
+        },
         "opacity": {
-          "condition": { "param": "hoverChart3", "empty": false, "value": 0.6 },
+          "condition": {
+            "param": "hoverChart3",
+            "empty": false,
+            "value": 0.6
+          },
           "value": 0
         }
       }
@@ -131,17 +193,86 @@
         "type": "point",
         "filled": true,
         "size": 80,
-        "color": "#ee3e75"
+        "color": "#e0457b"
       },
       "encoding": {
-        "x": { "field": "Year", "type": "quantitative" },
-        "y": { "field": "TotalEarnings", "type": "quantitative" },
+        "x": {
+          "field": "Year",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "TotalEarnings",
+          "type": "quantitative"
+        },
         "opacity": {
-          "condition": { "param": "hoverChart3", "empty": false, "value": 1 },
+          "condition": {
+            "param": "hoverChart3",
+            "empty": false,
+            "value": 1
+          },
           "value": 0
         }
       }
+    },
+    {
+      "data": {
+        "values": [
+          {"Year": 2010, "y": 5000000,   "label": "MOBA era begins · Dota 2 launches"},
+          {"Year": 2017, "y": 90000000,  "label": "Battle Royale arrives · PUBG + Fortnite"},
+          {"Year": 2019, "y": 220000000, "label": "$30M Fortnite World Cup · single peak"},
+          {"Year": 2020, "y": 130000000, "label": "COVID-19 dip · events cancelled"},
+          {"Year": 2024, "y": 80000000,  "label": "Partial data only (through Oct 2024)"}
+        ]
+      },
+      "mark": {
+        "type": "circle",
+        "size": 260,
+        "color": "#f1c14b",
+        "stroke": "#1a1410",
+        "strokeWidth": 2,
+        "opacity": 1,
+        "cursor": "help"
+      },
+      "encoding": {
+        "x": {"field": "Year", "type": "quantitative"},
+        "y": {"field": "y",    "type": "quantitative"},
+        "tooltip": [
+          {"field": "Year",  "title": "Year",  "format": "d"},
+          {"field": "label", "title": "Event"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"Year": 2010, "y": 5000000,   "n": "1"},
+          {"Year": 2017, "y": 90000000,  "n": "2"},
+          {"Year": 2019, "y": 220000000, "n": "3"},
+          {"Year": 2020, "y": 130000000, "n": "4"},
+          {"Year": 2024, "y": 80000000,  "n": "5"}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": 700,
+        "font": "Space Grotesk",
+        "color": "#1a1410"
+      },
+      "encoding": {
+        "x":    {"field": "Year", "type": "quantitative"},
+        "y":    {"field": "y",    "type": "quantitative"},
+        "text": {"field": "n"}
+      }
     }
   ],
-  "config": { "view": { "stroke": "transparent" } }
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    }
+  },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  }
 }

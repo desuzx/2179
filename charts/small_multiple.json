@@ -1,7 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "background": "#161428",
-  "data": { "url": "data/genre_yearly.csv" },
+  "background": "#f4ebd0",
+  "data": {
+    "url": "data/genre_yearly.csv"
+  },
   "facet": {
     "field": "Genre",
     "type": "nominal",
@@ -14,16 +16,16 @@
       "Sports"
     ],
     "header": {
-      "labelColor": "#e0dcff",
+      "labelColor": "#1a1410",
       "labelFontSize": 13,
-      "labelFont": "Outfit",
+      "labelFont": "Space Grotesk",
       "labelFontWeight": 600,
       "title": null,
       "labelPadding": 10
     }
   },
   "spec": {
-    "width": 158,
+    "width": 132,
     "height": 130,
     "layer": [
       {
@@ -37,31 +39,37 @@
             "field": "Year",
             "type": "quantitative",
             "axis": {
-              "labelColor": "#9991bb",
+              "labelColor": "#3a3026",
               "labelFontSize": 9,
-              "labelFont": "Outfit",
+              "labelFont": "Space Grotesk",
               "format": "d",
               "ticks": false,
-              "domainColor": "#2a2444",
+              "domainColor": "#a89568",
               "grid": false,
               "title": null,
               "labelAngle": 0,
               "tickCount": 3
             },
-            "scale": { "domainMax": 2024, "domainMin": 1998 }
+            "scale": {
+              "domainMax": 2024,
+              "domainMin": 1998
+            }
           },
           "y": {
             "field": "TotalEarnings",
             "type": "quantitative",
             "axis": {
-              "labelColor": "#9991bb",
+              "labelColor": "#3a3026",
               "labelFontSize": 9,
-              "labelFont": "Outfit",
+              "labelFont": "Space Grotesk",
               "format": "$~s",
               "ticks": false,
-              "domainColor": "#2a2444",
-              "gridColor": "#1e1a30",
-              "gridDash": [3, 3],
+              "domainColor": "#a89568",
+              "gridColor": "#c9b88a",
+              "gridDash": [
+                3,
+                3
+              ],
               "title": null,
               "tickCount": 3
             }
@@ -77,7 +85,13 @@
                 "Strategy",
                 "Sports"
               ],
-              "range": ["#ee3e75", "#00d1ff", "#9e86ff", "#f5a623", "#44d67a"]
+              "range": [
+                "#e0457b",
+                "#3a76b8",
+                "#a065c4",
+                "#e8853a",
+                "#5fa752"
+              ]
             },
             "legend": null
           }
@@ -90,8 +104,14 @@
           "strokeWidth": 2
         },
         "encoding": {
-          "x": { "field": "Year", "type": "quantitative" },
-          "y": { "field": "TotalEarnings", "type": "quantitative" },
+          "x": {
+            "field": "Year",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "TotalEarnings",
+            "type": "quantitative"
+          },
           "color": {
             "field": "Genre",
             "type": "nominal",
@@ -103,7 +123,13 @@
                 "Strategy",
                 "Sports"
               ],
-              "range": ["#ee3e75", "#00d1ff", "#29b6d4", "#f5a623", "#44d67a"]
+              "range": [
+                "#e0457b",
+                "#3a76b8",
+                "#a065c4",
+                "#e8853a",
+                "#5fa752"
+              ]
             },
             "legend": null
           }
@@ -115,24 +141,45 @@
             "name": "hoverGenre",
             "select": {
               "type": "point",
-              "fields": ["Year"],
+              "fields": [
+                "Year"
+              ],
               "nearest": true,
               "on": "mousemove",
               "clear": "mouseout"
             }
           }
         ],
-        "mark": { "type": "point", "opacity": 0 },
+        "mark": {
+          "type": "point",
+          "opacity": 0
+        },
         "encoding": {
-          "x": { "field": "Year", "type": "quantitative" },
-          "y": { "field": "TotalEarnings", "type": "quantitative" }
+          "x": {
+            "field": "Year",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "TotalEarnings",
+            "type": "quantitative"
+          }
         }
       },
       {
-        "mark": { "type": "point", "filled": true, "size": 60 },
+        "mark": {
+          "type": "point",
+          "filled": true,
+          "size": 60
+        },
         "encoding": {
-          "x": { "field": "Year", "type": "quantitative" },
-          "y": { "field": "TotalEarnings", "type": "quantitative" },
+          "x": {
+            "field": "Year",
+            "type": "quantitative"
+          },
+          "y": {
+            "field": "TotalEarnings",
+            "type": "quantitative"
+          },
           "color": {
             "field": "Genre",
             "type": "nominal",
@@ -144,17 +191,34 @@
                 "Strategy",
                 "Sports"
               ],
-              "range": ["#ee3e75", "#7f77dd", "#29b6d4", "#f5a623", "#44d67a"]
+              "range": [
+                "#e0457b",
+                "#3a76b8",
+                "#a065c4",
+                "#e8853a",
+                "#5fa752"
+              ]
             },
             "legend": null
           },
           "opacity": {
-            "condition": { "param": "hoverGenre", "empty": false, "value": 1 },
+            "condition": {
+              "param": "hoverGenre",
+              "empty": false,
+              "value": 1
+            },
             "value": 0
           },
           "tooltip": [
-            { "field": "Year", "title": "Year", "format": "d" },
-            { "field": "Genre", "title": "Genre" },
+            {
+              "field": "Year",
+              "title": "Year",
+              "format": "d"
+            },
+            {
+              "field": "Genre",
+              "title": "Genre"
+            },
             {
               "field": "TotalEarnings",
               "title": "Prize Money",
@@ -165,14 +229,18 @@
       }
     ]
   },
-  "resolve": { "scale": { "y": "independent" } },
+  "resolve": {
+    "scale": {
+      "y": "independent"
+    }
+  },
   "spacing": 20,
   "config": {
     "view": {
-      "stroke": "#1e1a30",
+      "stroke": "#c9b88a",
       "strokeWidth": 1,
-      "fill": "#131325"
+      "fill": "#f4ebd0"
     },
-    "background": "#161428"
+    "background": "#f4ebd0"
   }
 }

@@ -1,8 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "width": 820,
+  "width": "container",
   "height": 440,
-  "background": "#161428",
+  "padding": { "left": 5, "right": 130, "top": 5, "bottom": 5 },
+  "autosize": { "type": "fit", "contains": "padding" },
+  "background": "#f4ebd0",
   "data": {
     "values": [
       {
@@ -62,7 +64,7 @@
       {
         "Rank": 7,
         "Handle": "Ceb",
-        "RealName": "S\u00e9bastien Debs",
+        "RealName": "Sébastien Debs",
         "Country": "France",
         "TotalEarnings": 5949442.73,
         "TopGame": "Dota 2",
@@ -161,7 +163,7 @@
       {
         "Rank": 18,
         "Handle": "Zai",
-        "RealName": "Ludwig W\u00e5hlberg",
+        "RealName": "Ludwig Wåhlberg",
         "Country": "Sweden",
         "TotalEarnings": 4292756.02,
         "TopGame": "Dota 2",
@@ -184,6 +186,15 @@
         "TotalEarnings": 4090790.2,
         "TopGame": "Dota 2",
         "IsAustralian": false
+      },
+      {
+        "Rank": 79,
+        "Handle": "kpii",
+        "RealName": "Damien Chok",
+        "Country": "Australia",
+        "TotalEarnings": 1865667.57,
+        "TopGame": "Dota 2",
+        "IsAustralian": true
       }
     ]
   },
@@ -196,12 +207,12 @@
         "order": "descending"
       },
       "axis": {
-        "labelColor": "#c8c4e0",
-        "labelFontSize": 12,
-        "labelFont": "Outfit",
-        "labelFontWeight": "normal",
+        "labelColor": "#1a1410",
+        "labelFontSize": 13,
+        "labelFont": "Space Grotesk",
+        "labelFontWeight": 600,
         "ticks": false,
-        "domainColor": "#2a2444",
+        "domainColor": "#a89568",
         "title": null,
         "labelPadding": 8
       }
@@ -221,14 +232,17 @@
             "domainMin": 0
           },
           "axis": {
-            "labelColor": "#9991bb",
+            "labelColor": "#3a3026",
             "labelFontSize": 11,
-            "labelFont": "Outfit",
+            "labelFont": "Space Grotesk",
             "format": "$~s",
             "ticks": false,
-            "domainColor": "#2a2444",
-            "gridColor": "#1e1a30",
-            "gridDash": [3, 3],
+            "domainColor": "#a89568",
+            "gridColor": "#c9b88a",
+            "gridDash": [
+              3,
+              3
+            ],
             "title": null,
             "tickCount": 6
           }
@@ -240,8 +254,14 @@
           "field": "IsAustralian",
           "type": "nominal",
           "scale": {
-            "domain": [false, true],
-            "range": ["#7065a1", "#ee3e75"]
+            "domain": [
+              false,
+              true
+            ],
+            "range": [
+              "#7065a1",
+              "#e0457b"
+            ]
           },
           "legend": null
         }
@@ -262,8 +282,14 @@
           "field": "IsAustralian",
           "type": "nominal",
           "scale": {
-            "domain": [false, true],
-            "range": ["#7f77dd", "#ee3e75"]
+            "domain": [
+              false,
+              true
+            ],
+            "range": [
+              "#6e4ba0",
+              "#e0457b"
+            ]
           },
           "legend": null
         },
@@ -271,8 +297,14 @@
           "field": "IsAustralian",
           "type": "nominal",
           "scale": {
-            "domain": [false, true],
-            "range": [80, 160]
+            "domain": [
+              false,
+              true
+            ],
+            "range": [
+              80,
+              160
+            ]
           },
           "legend": null
         },
@@ -309,22 +341,40 @@
       "mark": {
         "type": "text",
         "align": "left",
-        "dx": 8,
-        "fontSize": 10,
-        "fontStyle": "italic"
+        "dx": 10,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "font": "Space Grotesk"
       },
       "encoding": {
         "y": {
           "field": "Handle",
           "type": "nominal",
-          "sort": { "field": "TotalEarnings", "order": "descending" }
+          "sort": {
+            "field": "TotalEarnings",
+            "order": "descending"
+          }
         },
-        "x": { "field": "TotalEarnings", "type": "quantitative" },
-        "text": { "field": "Country" },
+        "x": {
+          "field": "TotalEarnings",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "Country"
+        },
         "color": {
           "field": "IsAustralian",
           "type": "nominal",
-          "scale": { "domain": [false, true], "range": ["#897fb6", "#ee3e75"] },
+          "scale": {
+            "domain": [
+              false,
+              true
+            ],
+            "range": [
+              "#3a3026",
+              "#e0457b"
+            ]
+          },
           "legend": null
         }
       }
@@ -334,5 +384,9 @@
     "view": {
       "stroke": "transparent"
     }
+  },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
   }
 }

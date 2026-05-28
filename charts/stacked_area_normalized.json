@@ -1,9 +1,11 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "width": 820,
+  "width": "container",
   "height": 300,
-  "background": "#161428",
-  "data": { "url": "data/genre_yearly.csv" },
+  "background": "#f4ebd0",
+  "data": {
+    "url": "data/genre_yearly.csv"
+  },
   "transform": [
     {
       "filter": {
@@ -17,33 +19,53 @@
         ]
       }
     },
-    { "filter": "datum.Year <= 2023" },
+    {
+      "filter": "datum.Year <= 2023"
+    },
     {
       "joinaggregate": [
-        { "op": "sum", "field": "TotalEarnings", "as": "YearTotal" }
+        {
+          "op": "sum",
+          "field": "TotalEarnings",
+          "as": "YearTotal"
+        }
       ],
-      "groupby": ["Year"]
+      "groupby": [
+        "Year"
+      ]
     },
     {
       "calculate": "round(datum.TotalEarnings / datum.YearTotal * 1000) / 10",
       "as": "SharePct"
     }
   ],
-  "mark": { "type": "area", "line": false, "opacity": 0.88 },
+  "mark": {
+    "type": "area",
+    "line": false,
+    "opacity": 0.88
+  },
   "encoding": {
     "x": {
       "field": "Year",
       "type": "quantitative",
-      "scale": { "domain": [1998, 2023] },
+      "scale": {
+        "domain": [
+          1998,
+          2023
+        ]
+      },
       "axis": {
-        "labelColor": "#9991bb",
+        "labelColor": "#3a3026",
         "labelFontSize": 11,
-        "labelFont": "Outfit",
+        "labelFont": "Space Grotesk",
         "format": "d",
         "ticks": false,
-        "domainColor": "#2a2444",
-        "gridColor": "#1e1a30",
-        "gridDash": [3, 3],
+        "domainColor": "#a89568",
+        "gridColor": "#c9b88a",
+        "gridDash": [
+          3,
+          3
+        ],
         "title": null
       }
     },
@@ -52,18 +74,21 @@
       "type": "quantitative",
       "stack": "normalize",
       "axis": {
-        "labelColor": "#9991bb",
+        "labelColor": "#3a3026",
         "labelFontSize": 11,
-        "labelFont": "Outfit",
+        "labelFont": "Space Grotesk",
         "format": "%",
         "ticks": false,
-        "domainColor": "#2a2444",
-        "gridColor": "#1e1a30",
-        "gridDash": [3, 3],
+        "domainColor": "#a89568",
+        "gridColor": "#c9b88a",
+        "gridDash": [
+          3,
+          3
+        ],
         "title": "Share of Annual Prize Money",
-        "titleColor": "#4a4460",
+        "titleColor": "#5a4d3a",
         "titleFontSize": 11,
-        "titleFont": "Outfit",
+        "titleFont": "Space Grotesk",
         "titlePadding": 10
       }
     },
@@ -78,16 +103,22 @@
           "Strategy",
           "Sports"
         ],
-        "range": ["#ee3e75", "#00d1ff", "#9e86ff", "#ffb800", "#00ff94"]
+        "range": [
+          "#e0457b",
+          "#3a76b8",
+          "#a065c4",
+          "#e8853a",
+          "#5fa752"
+        ]
       },
       "legend": {
         "title": "Genre",
-        "titleColor": "#4a4460",
+        "titleColor": "#5a4d3a",
         "titleFontSize": 10,
-        "titleFont": "Outfit",
-        "labelColor": "#9991bb",
+        "titleFont": "Space Grotesk",
+        "labelColor": "#3a3026",
         "labelFontSize": 10,
-        "labelFont": "Outfit",
+        "labelFont": "Space Grotesk",
         "labelLimit": 220,
         "orient": "right",
         "symbolSize": 60,
@@ -106,11 +137,34 @@
       ]
     },
     "tooltip": [
-      { "field": "Year", "title": "Year", "format": "d" },
-      { "field": "Genre", "title": "Genre" },
-      { "field": "TotalEarnings", "title": "Prize Money", "format": "$,.0f" },
-      { "field": "SharePct", "title": "Share of Year %", "format": ".1f" }
+      {
+        "field": "Year",
+        "title": "Year",
+        "format": "d"
+      },
+      {
+        "field": "Genre",
+        "title": "Genre"
+      },
+      {
+        "field": "TotalEarnings",
+        "title": "Prize Money",
+        "format": "$,.0f"
+      },
+      {
+        "field": "SharePct",
+        "title": "Share of Year %",
+        "format": ".1f"
+      }
     ]
   },
-  "config": { "view": { "stroke": "transparent" } }
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    }
+  },
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  }
 }
